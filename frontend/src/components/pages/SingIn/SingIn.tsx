@@ -1,39 +1,32 @@
 import { memo, VFC } from "react";
+import { SingInBtn } from "../../atoms/SingIn/SingInBtn/SingInBtn";
+import { SingInInput } from "../../atoms/SingIn/SIngInInput/SingInInpu";
 import styles from "./SingIn.module.css";
 
 export const SingIn: VFC = memo(() => {
   return (
-    <>
+    <body className={styles.singinBody}>
       <div className={styles.singinCard}>
         <div className={styles.singinContainer}>
           <div>
             <h2 className={styles.singin}>SING IN</h2>
           </div>
           <div className={styles.formContainer}>
-            <input
-              className={styles.emailInput}
-              type="email"
-              placeholder="email"
-            />
-
+            <SingInInput type={"email"} />
             <div className={styles.underline}></div>
-            <input
-              className={styles.passwordInput}
-              type="password"
-              placeholder="password"
-            />
+            <SingInInput type={"password"} />
 
             <div className={styles.underline}></div>
           </div>
           <div className={styles.buttonContainer}>
             <button className={styles.loginBtn}>LOGIN</button>
             <div className={styles.signinBtnContainer}>
-              <button className={styles.singInBtn}>SING IN</button>
-              <button className={styles.singInBtn}>GOOGLE</button>
+              <SingInBtn>SIGN IN</SingInBtn>
+              <SingInBtn>GOOGLE</SingInBtn>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </body>
   );
 });

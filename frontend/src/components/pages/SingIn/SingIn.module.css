@@ -23,46 +23,13 @@
   margin-top: 40px;
 }
 
-.emailInput {
-  background-color: rgb(196, 196, 196, 0);
-  border: none;
-  outline: none;
-  padding-top: 14px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.1em;
-  margin-left: 70px;
-  margin-bottom: 10px;
-  margin-top: 90px;
-}
 .underline {
   margin: 0 auto;
   background: -webkit-linear-gradient(right, rgb(51, 51, 51), rgb(51, 51, 51));
   height: 1px;
   width: 70%;
 }
-.passwordInput {
-  background-color: rgba(196, 196, 196, 0);
-  border: none;
-  outline: none;
-  padding-top: 14px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.1em;
-  margin-left: 70px;
-  margin-bottom: 10px;
-  margin-top: 60px;
-}
+
 .buttonContainer {
   margin-top: 70px;
   text-align: center;
@@ -87,20 +54,4 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
-}
-.singInBtn {
-  width: 150px;
-  height: 50px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 21px;
-  color: rgba(0, 0, 0, 0.3);
-  background: #ffffff;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  opacity: 0.7;
-  border-radius: 10px;
-  margin: 0 20px 0 20px;
-  cursor: pointer;
 }
