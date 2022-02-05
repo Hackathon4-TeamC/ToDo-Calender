@@ -5,10 +5,6 @@ interface Props {
   children: string;
 }
 
-const ButtonExampleButton = () => <Button>Click Here</Button>;
-
-export default ButtonExampleButton;
-
 export const SingInBtn: VFC<Props> = memo((props) => {
   const { children } = props;
   return (
