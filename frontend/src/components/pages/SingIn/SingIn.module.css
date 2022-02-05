@@ -8,7 +8,7 @@
 }
 
 .singinContainer {
-  padding: 12px 44px;
+  padding: 50px 44px;
 }
 
 .singin {
@@ -30,9 +30,14 @@
   width: 70%;
 }
 
+.formContainer {
+  margin-bottom: 70px;
+}
+
 .buttonContainer {
-  margin-top: 70px;
   text-align: center;
+  width: 75%;
+  margin: auto;
 }
 .loginBtn {
   font-family: Roboto;
@@ -52,6 +57,6 @@
 
 .signinBtnContainer {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 20px;
 }

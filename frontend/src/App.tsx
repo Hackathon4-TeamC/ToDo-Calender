@@ -1,10 +1,7 @@
 import React from "react";
-import { SingIn } from "./components/pages/SingIn/SingIn";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Router } from "./router/Router";
 
 export const App = () => {
-  return (
-    <div className="App">
-      <SingIn />
-    </div>
-  );
+  return <Router />;
 };
