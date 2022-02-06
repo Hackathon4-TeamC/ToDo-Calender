@@ -1,18 +1,17 @@
-import { memo, useState, VFC } from "react";
+import { memo, VFC } from "react";
 import {
   SidebarPushable,
   Sidebar,
-  MenuItem,
-  Icon,
   Segment,
   Header,
   Menu,
-  Button,
 } from "semantic-ui-react";
+import { ItemName } from "../../atoms/CalenderSidebar/ItemName/ItemName";
+import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
+import { ToggleBotton } from "../../atoms/CalenderSidebar/ToggleBotton/ToggleBotton";
 import styles from "./CalenderSidebar.module.css";
 
 export const CalenderSidebar: VFC = memo(() => {
-  const [visible, setVisible] = useState(false);
   return (
     <SidebarPushable as={Segment}>
       <Sidebar
@@ -24,21 +23,22 @@ export const CalenderSidebar: VFC = memo(() => {
         width="thin"
       >
         <div>
-          <div className={styles.text}>学習</div>
-          <div className={styles.underline}></div>
+          <ItemName>学習</ItemName>
         </div>
         <div className={styles.btnContainer}>
-          <Button primary>学習計画を追加</Button>
+          <PrimaryBotton>学習計画を追加</PrimaryBotton>
           <p className={styles.magin}></p>
-          <Button primary>学習計画を見る</Button>
+          <PrimaryBotton>学習計画を見る</PrimaryBotton>
         </div>
 
         <div>
-          <div className={styles.text}>通知設定</div>
-          <div className={styles.underline}></div>
+          <ItemName>通知設定</ItemName>
         </div>
         <div className={styles.toggleBtn}>
-          <Button toggle>通知設定</Button>
+          <ToggleBotton>通知設定 OFF</ToggleBotton>
+        </div>
+        <div className={styles.logoutBtn}>
+          <PrimaryBotton>ログアウト</PrimaryBotton>
         </div>
       </Sidebar>
 
