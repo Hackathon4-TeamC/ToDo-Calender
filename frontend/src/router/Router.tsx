@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import { DevLink } from "../components/pages/DevLink/DevLink";
 import { Home } from "../components/pages/Home/Home";
 import { SignIn } from "../components/pages/SignIn/SignIn";
-import { SingUp } from "../components/pages/SignUp/SingUp";
 
 export const Router = () => {
   return (
