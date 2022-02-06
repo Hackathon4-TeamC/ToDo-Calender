@@ -5,7 +5,7 @@ import styled from "./DevLink.module.css";
 export const DevLink: VFC = memo(() => {
   return (
     <div className={styled.link}>
-      <Link to="SignIn">signIn</Link>
+      <Link to="signin">signin</Link>
       <br />
       <Link to="home">home</Link>
     </div>
