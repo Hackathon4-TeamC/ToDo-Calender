@@ -1,4 +1,4 @@
-.singinCard {
+.SignInCard {
   width: 530px;
   height: 660px;
   background-color: rgb(196, 196, 196, 0.7);
@@ -7,11 +7,11 @@
   margin-top: 30px;
 }
 
-.singinContainer {
+.SignInContainer {
   padding: 50px 44px;
 }
 
-.singin {
+.SignIn {
   color: rgba(0, 0, 0, 0.3);
   font-family: Roboto;
   font-weight: 700;
