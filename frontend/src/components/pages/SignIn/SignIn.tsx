@@ -1,6 +1,6 @@
 import { memo, VFC } from "react";
 import { SignInBtn } from "../../atoms/SignIn/SignInBtn/SignInBtn";
-import { SignInInput } from "../../atoms/SignIn/SignInInput/SignInInpu";
+import { SignInInput } from "../../atoms/SignIn/SignInInput/SignInInput";
 import styles from "./SignIn.module.css";
 
 export const SignIn: VFC = memo(() => {
