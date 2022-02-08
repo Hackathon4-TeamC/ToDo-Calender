@@ -9,6 +9,7 @@ import {
 import { ItemName } from "../../atoms/CalenderSidebar/ItemName/ItemName";
 import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
 import { ToggleBotton } from "../../atoms/CalenderSidebar/ToggleBotton/ToggleBotton";
+import { LearningRecordModal } from "../LearningRecordModal/LearningRecordModal";
 import styles from "./CalenderSidebar.module.css";
 
 export const CalenderSidebar: VFC = memo(() => {
@@ -29,7 +30,7 @@ export const CalenderSidebar: VFC = memo(() => {
           <div className={styles.btnContainer}>
             <PrimaryBotton>学習計画を追加</PrimaryBotton>
             <p className={styles.magin}></p>
-            <PrimaryBotton>学習計画を見る</PrimaryBotton>
+            <LearningRecordModal />
           </div>
 
           <div>

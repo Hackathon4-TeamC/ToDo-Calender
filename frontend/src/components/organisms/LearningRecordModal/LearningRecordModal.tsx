@@ -1,6 +1,6 @@
 import { memo, useState, VFC } from "react";
 import styles from "./LearningRecordModal.module.css";
-import { Button, Icon, Modal, ModalHeader } from "semantic-ui-react";
+import { Icon, Modal, ModalHeader } from "semantic-ui-react";
 import { CotentsTotalTime } from "../../atoms/LearningRecordModal/ContentsTotalTime/ContentsTotalTime";
 import { TotalTime } from "../../atoms/LearningRecordModal/TotalTime/TotalTime";
 import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
