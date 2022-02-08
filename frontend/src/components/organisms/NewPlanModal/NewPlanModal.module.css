@@ -1,44 +1,39 @@
-.PlanModal {
-    margin :15% 20%;
-    border-radius: 20px;
-    outline: solid 1px;
-}
-
-.TitleBar {
-    border-radius: 20px 20px 0 0;
+.modalHeader {
+    text-align: center;
+    margin: -1.25rem -1.5rem -1.25rem -1.5rem;
     background-color: #2185d0;
-    text-align :center;
-    padding: 1em;
+    padding: 20px;
+    border-radius: 0.28571429rem;
 }
 
-.TitleBar H2 {
+.title {
     font-family: Roboto;
     color: white;
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: inline;
 }
 
-.TitleBar button {
-    float: right;
-    margin: 12px 12px;
+.icon {
+    position: absolute;
+    right: 30px;
+    top: 28px;
 }
 
 .PlanBody {
     text-align: center;
-    font-size: 18px;
-}
-
-.PlanBody button {
-    border-radius: 50px;
-    padding :0.5em;
-    margin-bottom:36px;
+    font-size: 24px;
+    line-height: 28px;
 }
 
 .PlanName {
     margin: 36px;
+}
+.PlanName input {
+    border-radius: 10px;
+    padding: 0.5em;
+    width:400px;
 }
 
 .PlanStartEnd {
@@ -57,5 +52,11 @@
 
 input {
     border-radius: 10px;
-    padding: 0.2em
+    padding: 0.3em;
+    width:250px;
+}
+
+button{
+    padding: 1em;
+    border-radius: 50px;
 }
