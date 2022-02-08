@@ -1,16 +1,24 @@
 import { memo, useState, VFC } from "react";
 import styles from "./LearningRecordModal.module.css";
 import { Button, Icon, Modal, ModalHeader } from "semantic-ui-react";
+import { CotentsTotalTime } from "../../atoms/LearningRecordModal/ContentsTotalTime/ContentsTotalTime";
+import { TotalTime } from "../../atoms/LearningRecordModal/TotalTime/TotalTime";
+import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
 
 export const LearningRecordModal: VFC = memo(() => {
   const [open, setOpen] = useState(false);
+
   return (
     <Modal
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
       dimmer="inverted"
-      trigger={<Button>学習記録</Button>}
+      trigger={
+        <PrimaryBotton modalOpen={() => setOpen(true)}>
+          学習記録を見る
+        </PrimaryBotton>
+      }
     >
       <ModalHeader icon="archive">
         <div className={styles.modalHeader}>
@@ -28,65 +36,19 @@ export const LearningRecordModal: VFC = memo(() => {
         <Modal.Description>
           <div className={styles.modalContainer}>
             <div className={styles.totalTimeContainer}>
-              <div>
-                この月<span className={styles.totalTime}>111</span>時間
-              </div>
-              <div>
-                トータル<span className={styles.totalTime}>222</span>時間
-              </div>
+              <TotalTime children={"この月"} totalTime={111} />
+              <TotalTime children={"トータル"} totalTime={222} />
             </div>
             <p className={styles.learningContentTitle}>
               学習項目ごとの総合学習時間
             </p>
             <div className={styles.learningContentsContainer}>
-              <div className={styles.learningTimesDiv}>
-                <div>
-                  <p className={styles.contentName}>寿司打</p>
-                </div>
-                <div>
-                  <span className={styles.contentsTotalTime}>0.5</span>時間
-                </div>
-              </div>
-              <div className={styles.learningTimesDiv}>
-                <div>
-                  <p>寿司打</p>
-                </div>
-                <div>
-                  <span className={styles.contentsTotalTime}>0.5</span>時間
-                </div>
-              </div>
-              <div className={styles.learningTimesDiv}>
-                <div>
-                  <p>寿司打</p>
-                </div>
-                <div>
-                  <span className={styles.contentsTotalTime}>0.5</span>時間
-                </div>
-              </div>
-              <div className={styles.learningTimesDiv}>
-                <div>
-                  <p>寿司打</p>
-                </div>
-                <div>
-                  <span className={styles.contentsTotalTime}>0.5</span>時間
-                </div>
-              </div>
-              <div className={styles.learningTimesDiv}>
-                <div>
-                  <p>寿司打</p>
-                </div>
-                <div>
-                  <span className={styles.contentsTotalTime}>0.5</span>時間
-                </div>
-              </div>
-              <div className={styles.learningTimesDiv}>
-                <div>
-                  <p>寿司打</p>
-                </div>
-                <div>
-                  <span className={styles.contentsTotalTime}>0.5</span>時間
-                </div>
-              </div>
+              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
+              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
+              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
+              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
+              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
+              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
             </div>
           </div>
         </Modal.Description>
