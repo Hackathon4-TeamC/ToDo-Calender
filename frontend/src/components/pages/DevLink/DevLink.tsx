@@ -8,6 +8,8 @@ export const DevLink: VFC = memo(() => {
       <Link to="SignIn">signIn</Link>
       <br />
       <Link to="home">home</Link>
+      <br />
+      <Link to="LearningPlan">LearningPlan</Link>
     </div>
   );
 });

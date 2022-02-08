@@ -1,0 +1,56 @@
+.PlanModal {
+    margin :15% 20%;
+    border-radius: 20px;
+    outline: solid 1px;
+}
+
+.TitleBar {
+    border-radius: 20px 20px 0 0;
+    background-color: #2185d0;
+    text-align :center;
+    padding: 1em;
+}
+.TitleBar H2 {
+    font-family:'メイリオ', 'Meiryo', sans-serif;
+    font-size: 36px;
+    color :white;
+    padding :0.5em;
+    display: inline;
+}
+.TitleBar button {
+    float: right;
+    margin: 12px 12px;
+}
+
+.PlanBody {
+    text-align: center;
+    font-size: 18px;
+}
+.PlanBody button {
+    border-radius: 50px;
+    padding :0.5em;
+    margin-bottom:36px;
+}
+
+.PlanName {
+    margin: 36px;
+}
+
+.PlanStartEnd {
+    text-align: left;
+    margin: 36px 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.PlanWeekHour {
+    text-align: left;
+    margin: 36px 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    border-radius: 10px;
+    padding: 0.2em
+}
