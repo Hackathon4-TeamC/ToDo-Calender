@@ -4,7 +4,7 @@ import styles from "./LearningPlan.module.css"
 export const LearningPlan = () => {
   return ( <div className={styles.PlanModal}>
       <div className={styles.TitleBar}>
-        <h2>新規学習計画作成</h2>
+        <h2>新規学習計画を作成</h2>
         <button>×</button>
       </div>
       <div className={styles.PlanBody}>
