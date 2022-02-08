@@ -3,9 +3,14 @@ import { Button } from "semantic-ui-react";
 
 interface Props {
   children: string;
+  modalOpen?: () => void;
 }
 
 export const PrimaryBotton: VFC<Props> = memo((props) => {
-  const { children } = props;
-  return <Button primary>{children}</Button>;
+  const { children, modalOpen } = props;
+  return (
+    <Button primary onClick={modalOpen}>
+      {children}
+    </Button>
+  );
 });

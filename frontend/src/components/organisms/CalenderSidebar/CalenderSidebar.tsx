@@ -9,45 +9,48 @@ import {
 import { ItemName } from "../../atoms/CalenderSidebar/ItemName/ItemName";
 import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
 import { ToggleBotton } from "../../atoms/CalenderSidebar/ToggleBotton/ToggleBotton";
+import { LearningRecordModal } from "../LearningRecordModal/LearningRecordModal";
 import styles from "./CalenderSidebar.module.css";
 
 export const CalenderSidebar: VFC = memo(() => {
   return (
-    <SidebarPushable as={Segment}>
-      <Sidebar
-        as={Menu}
-        animation="overlay"
-        icon="labeled"
-        vertical
-        visible
-        width="thin"
-      >
-        <div>
-          <ItemName>学習</ItemName>
-        </div>
-        <div className={styles.btnContainer}>
-          <PrimaryBotton>学習計画を追加</PrimaryBotton>
-          <p className={styles.magin}></p>
-          <PrimaryBotton>学習計画を見る</PrimaryBotton>
-        </div>
+    <div className={styles.sidebarContainer}>
+      <SidebarPushable as={Segment}>
+        <Sidebar
+          as={Menu}
+          animation="overlay"
+          icon="labeled"
+          vertical
+          visible
+          width="thin"
+        >
+          <div>
+            <ItemName>学習</ItemName>
+          </div>
+          <div className={styles.btnContainer}>
+            <PrimaryBotton>学習計画を追加</PrimaryBotton>
+            <p className={styles.magin}></p>
+            <LearningRecordModal />
+          </div>
 
-        <div>
-          <ItemName>通知設定</ItemName>
-        </div>
-        <div className={styles.toggleBtn}>
-          <ToggleBotton>通知設定 OFF</ToggleBotton>
-        </div>
-        <div className={styles.logoutBtn}>
-          <PrimaryBotton>ログアウト</PrimaryBotton>
-        </div>
-      </Sidebar>
+          <div>
+            <ItemName>通知設定</ItemName>
+          </div>
+          <div className={styles.toggleBtn}>
+            <ToggleBotton>通知設定 OFF</ToggleBotton>
+          </div>
+          <div className={styles.logoutBtn}>
+            <PrimaryBotton>ログアウト</PrimaryBotton>
+          </div>
+        </Sidebar>
 
-      <SidebarPushable>
-        <Segment basic>
-          <Header as="h3"></Header>
-          <div className={styles.div}>仮のコンポーネント</div>
-        </Segment>
+        <SidebarPushable>
+          <Segment basic>
+            <Header as="h3"></Header>
+            <div className={styles.div}></div>
+          </Segment>
+        </SidebarPushable>
       </SidebarPushable>
-    </SidebarPushable>
+    </div>
   );
 });
