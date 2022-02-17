@@ -2,6 +2,7 @@ import { memo, useState, VFC } from "react";
 import styles from "./NewPlanModal.module.css";
 import { Icon, Modal, ModalHeader } from "semantic-ui-react";
 import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
+import { LerningPlanName } from "../../atoms/NewPlanModal/LerningPlanName";
 
 export const NewPlanModal: VFC = memo(() => {
   const [open, setOpen] = useState(false);
@@ -34,7 +35,7 @@ export const NewPlanModal: VFC = memo(() => {
         <Modal.Description>
       <div className={styles.PlanBody}>
         <div className={styles.PlanName}>
-          <div><label>学習計画名</label><br /><input type="text" /></div>
+          <LerningPlanName LerningPlanLabel={"新規学習めいめい"} />
         </div>
        <div className={styles.PlanStartEnd}>
           <div><label>開始</label><br /><input type="date" /></div>
