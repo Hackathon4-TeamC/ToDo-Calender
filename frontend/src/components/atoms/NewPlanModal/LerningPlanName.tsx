@@ -11,7 +11,7 @@ export const LerningPlanName: VFC<Props> = memo((props) => {
         <>
             <div>
                 <label>{LerningPlanLabel}</label>
-                <input type="text" />
+                <input className={styles.LerningPlanNameInput} type="text" />
             </div>
         </>
     );
