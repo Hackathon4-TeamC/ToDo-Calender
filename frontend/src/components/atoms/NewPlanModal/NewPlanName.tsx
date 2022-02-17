@@ -1,17 +1,17 @@
 import { memo, VFC } from "react";
-import styles from "./LerningPlanName.module.css";
+import styles from "./NewPlanName.module.css";
 
 interface Props {
     LerningPlanLabel: string;
 }
 
-export const LerningPlanName: VFC<Props> = memo((props) => {
+export const NewPlanName: VFC<Props> = memo((props) => {
     const { LerningPlanLabel } = props;
     return (
         <>
             <div>
                 <label>{LerningPlanLabel}</label>
-                <input className={styles.LerningPlanNameInput} type="text" />
+                <input className={styles.NewPlanNameInput} type="text" />
             </div>
         </>
     );

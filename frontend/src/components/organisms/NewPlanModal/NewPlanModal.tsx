@@ -2,7 +2,7 @@ import { memo, useState, VFC } from "react";
 import styles from "./NewPlanModal.module.css";
 import { Icon, Modal, ModalHeader } from "semantic-ui-react";
 import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
-import { LerningPlanName } from "../../atoms/NewPlanModal/LerningPlanName";
+import { NewPlanName } from "../../atoms/NewPlanModal/NewPlanName";
 import { LerningPlanDays } from "../../atoms/NewPlanModal/LerningPlanDays";
 
 export const NewPlanModal: VFC = memo(() => {
@@ -36,7 +36,7 @@ export const NewPlanModal: VFC = memo(() => {
         <Modal.Description>
       <div className={styles.PlanBody}>
         <div className={styles.PlanName}>
-          <LerningPlanName LerningPlanLabel={"新規学習名"} />
+          <NewPlanName LerningPlanLabel={"新規学習名"} />
         </div>
        <div className={styles.PlanStartEnd}>
           <LerningPlanDays LerningPlanLabel={"開始"} />
