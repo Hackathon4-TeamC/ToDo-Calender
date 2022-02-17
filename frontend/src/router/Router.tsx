@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { DevLink } from "../components/pages/DevLink/DevLink";
 import { Home } from "../components/pages/Home/Home";
 import { SignIn } from "../components/pages/SignIn/SignIn";
+import { SlideIn } from "../components/pages/SlideIn/SlideIn";
 
 export const Router = () => {
   return (
@@ -11,6 +12,7 @@ export const Router = () => {
         <Route path="/" element={<DevLink />} />
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/slidein" element={<SlideIn/>}/> 
       </Routes>
     </>
   );
