@@ -11,6 +11,9 @@ export const DevLink: VFC = memo(() => {
       <br />
       <Link to="home">home</Link>
       <br />
+      <Link to="slidein">slidein</Link>
+      <br />
+      
       <div className={styles.modalContainer}>
         <h2>モーダル</h2>
         <LearningRecordModal />
