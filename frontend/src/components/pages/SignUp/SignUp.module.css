@@ -1,15 +1,16 @@
 body {
     background-color: rgba(33,133,208,0.5);
+    opacity: 0.8;
     margin: 0 auto;
+    padding-bottom: 4%;
 }
 
 .container {
-    padding: 2% 0 4%;
-    opacity: 0.8;
+    padding: 2% 0 3%;
     background-color: rgb(255,255,255,255);
     margin:0 auto;
     width: 360px;
-    height: 400px;
+    height: 480px;
     border-radius: 20px;
     margin-top: 50px;
     text-align: center;
@@ -32,6 +33,7 @@ body {
     margin: 0 auto;
     color: #2185D0;
     border-color: #2184d0;
+    border-radius: 0%;
     outline: none;
     border-top: none;
     border-right: none;
@@ -55,7 +57,7 @@ body {
 
 }
 
-.CreateAccount {
+.createaccount {
     padding: 2% 18%;
     margin-top: 10%;
 }

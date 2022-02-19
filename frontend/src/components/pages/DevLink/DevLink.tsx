@@ -9,11 +9,12 @@ export const DevLink: VFC = memo(() => {
     <div className={styles.link}>
       <Link to="signin">signin</Link>
       <br />
-      <Link to="home">home</Link>
+      <Link to="signup">signup</Link>
       <br />
       <Link to="slidein">slidein</Link>
       <br />
-      
+      <Link to="home">home</Link>
+      <br /> 
       <div className={styles.modalContainer}>
         <h2>モーダル</h2>
         <LearningRecordModal />
