@@ -7,8 +7,8 @@ import {
   Menu,
 } from "semantic-ui-react";
 import { ItemName } from "../../atoms/CalenderSidebar/ItemName/ItemName";
-import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
-import { ToggleBotton } from "../../atoms/CalenderSidebar/ToggleBotton/ToggleBotton";
+import { PrimaryButton } from "../../atoms/CalenderSidebar/PrimaryButton/PrimaryButton";
+import { ToggleButton } from "../../atoms/CalenderSidebar/ToggleButton/ToggleButton";
 import { LearningRecordModal } from "../LearningRecordModal/LearningRecordModal";
 import { NewPlanModal } from "../NewPlanModal/NewPlanModal";
 import styles from "./CalenderSidebar.module.css";
@@ -38,10 +38,10 @@ export const CalenderSidebar: VFC = memo(() => {
             <ItemName>通知設定</ItemName>
           </div>
           <div className={styles.toggleBtn}>
-            <ToggleBotton>通知設定 OFF</ToggleBotton>
+            <ToggleButton>通知設定 OFF</ToggleButton>
           </div>
           <div className={styles.logoutBtn}>
-            <PrimaryBotton>ログアウト</PrimaryBotton>
+            <PrimaryButton>ログアウト</PrimaryButton>
           </div>
         </Sidebar>
 

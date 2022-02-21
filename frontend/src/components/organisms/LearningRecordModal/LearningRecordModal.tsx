@@ -3,7 +3,7 @@ import styles from "./LearningRecordModal.module.css";
 import { Icon, Modal, ModalHeader } from "semantic-ui-react";
 import { CotentsTotalTime } from "../../atoms/LearningRecordModal/ContentsTotalTime/ContentsTotalTime";
 import { TotalTime } from "../../atoms/LearningRecordModal/TotalTime/TotalTime";
-import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
+import { PrimaryButton } from "../../atoms/CalenderSidebar/PrimaryButton/PrimaryButton";
 
 export const LearningRecordModal: VFC = memo(() => {
   const [open, setOpen] = useState(false);
@@ -15,9 +15,9 @@ export const LearningRecordModal: VFC = memo(() => {
       open={open}
       dimmer="inverted"
       trigger={
-        <PrimaryBotton modalOpen={() => setOpen(true)}>
+        <PrimaryButton modalOpen={() => setOpen(true)}>
           学習記録を見る
-        </PrimaryBotton>
+        </PrimaryButton>
       }
     >
       <ModalHeader icon="archive">
