@@ -5,7 +5,7 @@ interface Props {
   children: string;
 }
 
-export const ToggleBotton: VFC<Props> = memo((props) => {
+export const ToggleButton: VFC<Props> = memo((props) => {
   const { children } = props;
   return <Button toggle>{children}</Button>;
 });
