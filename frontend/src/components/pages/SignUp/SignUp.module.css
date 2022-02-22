@@ -1,13 +1,13 @@
-body {
+.signupbody {
     background-color: rgba(33,133,208,0.5);
     opacity: 0.8;
     margin: 0 auto;
     padding-bottom: 4%;
 }
 
-.container {
+.signupcontainer {
     padding: 2% 0 3%;
-    background-color: rgb(255,255,255,255);
+    background-color: white;
     margin:0 auto;
     width: 360px;
     height: 480px;
@@ -22,14 +22,13 @@ body {
     font-family: Roboto;
     font-weight: 700;
     font-style: normal;
-    line-height: 75px;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 15%;
 }
 
 
 
-.form {
+.signupform {
     margin: 0 auto;
     color: #2185D0;
     border-color: #2184d0;
@@ -42,7 +41,7 @@ body {
     padding-top: 7%;   
 }
 
-.btn {
+.signupbtn {
     font-size: 14px;
     color: #2185D0;
     background-color: white;
@@ -55,6 +54,10 @@ body {
     box-shadow: 3px 3px #C0C0C0;
     text-decoration: none;
 
+}
+
+.signupform.name {
+    padding-top: 0%;
 }
 
 .createaccount {
