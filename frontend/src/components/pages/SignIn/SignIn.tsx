@@ -5,7 +5,7 @@ import styles from "./SignIn.module.css";
 
 export const SignIn: VFC = memo(() => {
   return (
-    <body className={styles.SignInBody}>
+    <div className={styles.SignInBody}>
       <div className={styles.SignInCard}>
         <div className={styles.SignInContainer}>
           <div>
@@ -27,6 +27,6 @@ export const SignIn: VFC = memo(() => {
           </div>
         </div>
       </div>
-    </body>
+    </div>
   );
 });
