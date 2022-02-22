@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.10.1",
+    "@fullcalendar/interaction": "^5.10.1",
+    "@fullcalendar/react": "^5.10.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -10,7 +13,6 @@
     "@types/node": "^16.11.22",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
-    "axios": "^0.26.0",
     "fomantic-ui-css": "^2.8.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -26,8 +28,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "mock:build": "axios-mock-server -c .mockserverrc",
-    "mock:start": "axios-mock-server -c .mockserverrc && react-scripts start",
     "postinstall": "semantic-ui-css-patch"
   },
   "eslintConfig": {
@@ -49,7 +49,6 @@
     ]
   },
   "devDependencies": {
-    "@semantic-ui-react/css-patch": "^1.0.0",
-    "axios-mock-server": "^0.19.1"
+    "@semantic-ui-react/css-patch": "^1.0.0"
   }
 }

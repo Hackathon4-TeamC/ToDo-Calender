@@ -6,7 +6,7 @@ interface Props {
   modalOpen?: () => void;
 }
 
-export const PrimaryButton: VFC<Props> = memo((props) => {
+export const PrimaryBotton: VFC<Props> = memo((props) => {
   const { children, modalOpen } = props;
   return (
     <Button primary onClick={modalOpen}>

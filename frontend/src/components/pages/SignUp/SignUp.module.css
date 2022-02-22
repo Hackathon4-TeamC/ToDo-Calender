@@ -1,60 +1,66 @@
-body {
-  background-color: rgba(33, 133, 208, 0.5);
-  opacity: 0.8;
-  margin: 0 auto;
-  padding-bottom: 4%;
+.signupbody {
+    background-color: rgba(33,133,208,0.5);
+    opacity: 0.8;
+    margin: 0 auto;
+    padding-bottom: 4%;
 }
 
-.container {
-  padding: 2% 0 3%;
-  background-color: rgb(255, 255, 255, 255);
-  margin: 0 auto;
-  width: 360px;
-  height: 480px;
-  border-radius: 20px;
-  margin-top: 50px;
-  text-align: center;
+.signupcontainer {
+    padding: 2% 0 3%;
+    background-color: white;
+    margin:0 auto;
+    width: 360px;
+    height: 480px;
+    border-radius: 20px;
+    margin-top: 50px;
+    text-align: center;
 }
 
 .signuptxt {
-  font-size: 40px;
-  color: #2184d0;
-  font-family: Roboto;
-  font-weight: 700;
-  font-style: normal;
-  line-height: 75px;
-  text-align: center;
-  margin-top: 40px;
+    font-size: 40px;
+    color:#2184d0;  
+    font-family: Roboto;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    margin-top: 15%;
 }
 
-.form {
-  margin: 0 auto;
-  color: #2185d0;
-  border-color: #2184d0;
-  border-radius: 0%;
-  outline: none;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  font-size: 18px;
-  padding-top: 7%;
+
+
+.signupform {
+    margin: 0 auto;
+    color: #2185D0;
+    border-color: #2184d0;
+    border-radius: 0%;
+    outline: none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-size: 18px;
+    padding-top: 7%;   
 }
 
-.btn {
-  font-size: 14px;
-  color: #2185d0;
-  background-color: white;
-  outline: none;
-  padding: 2% 8%;
-  display: inline-block;
-  border: solid 1px #2184d0;
-  border-radius: 10px;
-  margin: 3% 3%;
-  box-shadow: 3px 3px #c0c0c0;
-  text-decoration: none;
+.signupbtn {
+    font-size: 14px;
+    color: #2185D0;
+    background-color: white;
+    outline: none;
+    padding: 2% 8% ;
+    display: inline-block;
+    border: solid 1px #2184d0;
+    border-radius: 10px;
+    margin: 3% 3% ;
+    box-shadow: 3px 3px #C0C0C0;
+    text-decoration: none;
+
+}
+
+.signupform.name {
+    padding-top: 0%;
 }
 
 .createaccount {
-  padding: 2% 18%;
-  margin-top: 10%;
+    padding: 2% 18%;
+    margin-top: 10%;
 }
