@@ -2,8 +2,9 @@ import { memo, useState, VFC } from "react";
 import styles from "./NewPlanModal.module.css";
 import { Icon, Modal, ModalHeader } from "semantic-ui-react";
 import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
-import { NewPlanName } from "../../atoms/NewPlanModal/NewPlanName";
-import { LerningPlanDays } from "../../atoms/NewPlanModal/LerningPlanDays";
+import { NewPlanName } from "../../atoms/NewPlanModal/NewPlanName/NewPlanName";
+import { LerningPlanDays } from "../../atoms/NewPlanModal/LerningPlanDays/LerningPlanDays";
+import { LerningPlanTime } from "../../atoms/NewPlanModal/LerningPlanTime/LerningPlanTime";
 
 export const NewPlanModal: VFC = memo(() => {
   const [open, setOpen] = useState(false);
@@ -44,7 +45,7 @@ export const NewPlanModal: VFC = memo(() => {
        </div>
        <div className={styles.PlanWeekHour}>
           <div><label>実施曜日</label><br /><input type="text" /></div>
-          <div><label>学習時間</label><br /><input type="time" /></div>
+          <LerningPlanTime LerningPlanLabel={"学習時間"} />
         </div>
         <button>学習計画を追加</button>
       </div>
