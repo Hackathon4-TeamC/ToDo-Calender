@@ -5,8 +5,6 @@
 import axios, { AxiosResponse } from "axios";
 import mock from "./mock/$mock";
 
-type Data = { [key: string]: string | number | boolean | object };
-
 export const rest = (() => {
   const client = axios.create({
     baseURL: "", // 今回は未指定 (通常は env などから参照させる)
@@ -19,7 +17,7 @@ export const rest = (() => {
     },
     post: <T = any, R = AxiosResponse<T>>(
       url: string,
-      data: Data
+      data: any
     ): Promise<R> => {
       return client.post(url, data);
     },

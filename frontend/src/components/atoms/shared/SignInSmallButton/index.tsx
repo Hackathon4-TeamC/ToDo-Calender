@@ -3,9 +3,14 @@ import styles from "./index.module.css";
 
 interface Props {
   children: string;
+  onClick: () => void;
 }
 
 export const SignInSmallButton: VFC<Props> = memo((props) => {
-  const { children } = props;
-  return <button className={styles.smallButton}>{children}</button>;
+  const { children, onClick } = props;
+  return (
+    <button className={styles.smallButton} onClick={onClick}>
+      {children}
+    </button>
+  );
 });
