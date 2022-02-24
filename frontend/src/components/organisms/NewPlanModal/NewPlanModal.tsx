@@ -5,6 +5,7 @@ import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/Primary
 import { NewPlanName } from "../../atoms/NewPlanModal/NewPlanName/NewPlanName";
 import { LerningPlanDays } from "../../atoms/NewPlanModal/LerningPlanDays/LerningPlanDays";
 import { LerningPlanTime } from "../../atoms/NewPlanModal/LerningPlanTime/LerningPlanTime";
+import { LerningCheckBox } from "../../atoms/NewPlanModal/LerningCheckBox/LerningCheckBox";
 
 export const NewPlanModal: VFC = memo(() => {
   const [open, setOpen] = useState(false);
@@ -44,7 +45,9 @@ export const NewPlanModal: VFC = memo(() => {
           <LerningPlanDays LerningPlanLabel={"終了"} />
        </div>
        <div className={styles.PlanWeekHour}>
-          <div><label>実施曜日</label><br /><input type="text" /></div>
+          <div>
+            <LerningCheckBox LerningPlanLabel="学習する曜日" />
+          </div>
           <LerningPlanTime LerningPlanLabel={"学習時間"} />
         </div>
         <button>学習計画を追加</button>
