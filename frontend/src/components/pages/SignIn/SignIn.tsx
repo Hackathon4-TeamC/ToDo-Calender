@@ -1,32 +1,27 @@
 import { memo, VFC } from "react";
-import { SignInBtn } from "../../atoms/SignIn/SignInBtn/SignInBtn";
-import { SignInInput } from "../../atoms/SignIn/SignInInput/SignInInput";
+import { SignInSmallButton } from "../../atoms/shared/SignInSmallButton";
+import { SignInInput } from "../../atoms/shared/SignInInput";
 import styles from "./SignIn.module.css";
+import { SignInWideButton } from "../../atoms/shared/SignInWIdeButton";
 
 export const SignIn: VFC = memo(() => {
   return (
-    <div className={styles.SignInBody}>
-      <div className={styles.SignInCard}>
-        <div className={styles.SignInContainer}>
-          <div>
-            <h2 className={styles.SignIn}>SIGN IN</h2>
-          </div>
-          <div className={styles.formContainer}>
-            <SignInInput type={"email"} />
-            <div className={styles.underline}></div>
-            <SignInInput type={"password"} />
-
-            <div className={styles.underline}></div>
-          </div>
+    <body className={styles.signupbody}>
+      <div className={styles.signupcontainer}>
+        <h2 className={styles.signuptxt}>SIGN IN</h2>
+        <div className={styles.signupform}>
+          <SignInInput type="email" placeholder="email" />
+          <p className={styles.inputMargin}></p>
+          <SignInInput type="password" placeholder="password" />
           <div className={styles.buttonContainer}>
-            <button className={styles.loginBtn}>LOGIN</button>
-            <div className={styles.signinBtnContainer}>
-              <SignInBtn>SIGN UP</SignInBtn>
-              <SignInBtn>GOOGLE</SignInBtn>
+            <SignInWideButton>SIGN IN</SignInWideButton>
+            <div className={styles.smallButtonContainer}>
+              <SignInSmallButton>SIGN UP</SignInSmallButton>
+              <SignInSmallButton>GOOGLE</SignInSmallButton>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </body>
   );
 });

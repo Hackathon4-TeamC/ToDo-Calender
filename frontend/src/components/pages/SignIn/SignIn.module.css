@@ -1,62 +1,58 @@
-.SignInCard {
-  width: 530px;
-  height: 660px;
-  background-color: rgb(196, 196, 196, 0.7);
-  border-radius: 20px;
+.signupcontainer {
+  padding: 2% 0 3%;
+  background-color: white;
   margin: 0 auto;
-  margin-top: 30px;
+  width: 360px;
+  height: 480px;
+  border-radius: 20px;
+  margin-top: 50px;
+  text-align: center;
 }
 
-.SignInContainer {
-  padding: 50px 44px;
-}
-
-.SignIn {
-  color: rgba(0, 0, 0, 0.3);
+.signuptxt {
+  font-size: 40px;
+  color: #2184d0;
   font-family: Roboto;
   font-weight: 700;
-  font-size: 64px;
   font-style: normal;
-  line-height: 75px;
-  letter-spacing: 10%;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 15%;
 }
 
-.underline {
+.signupbody {
+  background-color: rgba(33, 133, 208, 0.5);
+  opacity: 0.8;
   margin: 0 auto;
-  background: -webkit-linear-gradient(right, rgb(51, 51, 51), rgb(51, 51, 51));
-  height: 1px;
-  width: 70%;
+  padding-bottom: 4%;
 }
 
-.formContainer {
-  margin-bottom: 70px;
+.signupform {
+  margin: 0 auto;
+  color: #2185d0;
+  border-color: #2184d0;
+  border-radius: 0%;
+  outline: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  font-size: 18px;
+  padding-top: 7%;
+}
+
+.createaccount {
+  padding: 2% 18%;
+  margin-top: 10%;
+}
+
+.inputMargin {
+  margin: 30px;
+}
+
+.smallButtonContainer {
+  justify-content: center;
+  display: flex;
 }
 
 .buttonContainer {
-  text-align: center;
-  width: 75%;
-  margin: auto;
-}
-.loginBtn {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 21px;
-  color: rgba(0, 0, 0, 0.3);
-  opacity: 0.7;
-  width: 337px;
-  height: 50px;
-  background: #ffffff;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.signinBtnContainer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 40px;
 }
