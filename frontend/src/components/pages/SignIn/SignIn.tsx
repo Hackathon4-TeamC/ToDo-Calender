@@ -12,6 +12,7 @@ export const SignIn: VFC = memo(() => {
   // state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   //  グローバルなstate
   const { setUserData } = useContext(UserContext);
 
@@ -30,24 +31,30 @@ export const SignIn: VFC = memo(() => {
    * emailとpasswordが空の場合は発火されない
    */
   const onClickSignin = () => {
-    if (!email && !password) {
+    if (!email || !password) {
+      textNoneMessage();
       return;
     }
     postLoginUser(email, password)
       .then((result) => {
         if (result) {
           setUserData(result);
+          localStorage.setItem("token", result.token);
           navigate("/home");
         }
       })
-      .catch((err) => console.log(err));
+      .catch(() => setErrorMessage("パスワードかメールアドレスが違います"));
+  };
+
+  const textNoneMessage = () => {
+    setErrorMessage("メールアドレスとパスワードを入力してください");
   };
 
   const transitionToSignup = () => {
     navigate("/signup");
   };
   return (
-    <body className={styles.signupbody}>
+    <div className={styles.signupbody}>
       <div className={styles.signupcontainer}>
         <h2 className={styles.signuptxt}>SIGN IN</h2>
         <div className={styles.signupform}>
@@ -64,6 +71,7 @@ export const SignIn: VFC = memo(() => {
             onChange={onChangePasswordInput}
             value={password}
           />
+
           <div className={styles.buttonContainer}>
             <SignInWideButton onClick={onClickSignin}>SIGN IN</SignInWideButton>
             <div className={styles.smallButtonContainer}>
@@ -75,8 +83,11 @@ export const SignIn: VFC = memo(() => {
               </SignInSmallButton>
             </div>
           </div>
+          {errorMessage ? (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          ) : null}
         </div>
       </div>
-    </body>
+    </div>
   );
 });

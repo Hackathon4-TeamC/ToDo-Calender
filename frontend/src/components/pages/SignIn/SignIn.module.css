@@ -7,6 +7,7 @@
   border-radius: 20px;
   margin-top: 50px;
   text-align: center;
+  border: #2184d0 solid 2px;
 }
 
 .signuptxt {
@@ -20,8 +21,6 @@
 }
 
 .signupbody {
-  background-color: rgba(33, 133, 208, 0.5);
-  opacity: 0.8;
   margin: 0 auto;
   padding-bottom: 4%;
 }
@@ -29,7 +28,6 @@
 .signupform {
   margin: 0 auto;
   color: #2185d0;
-  border-color: #2184d0;
   border-radius: 0%;
   outline: none;
   border-top: none;
@@ -55,4 +53,9 @@
 
 .buttonContainer {
   margin-top: 40px;
+}
+.errorMessage {
+  margin-top: 10px;
+  font-size: small;
+  color: red;
 }

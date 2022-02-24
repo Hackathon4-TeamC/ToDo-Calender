@@ -17,6 +17,6 @@ export const postLoginUser = async (
     });
     return result.data;
   } catch (err) {
-    throw new Error();
+    console.log(err);
   }
 };
