@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 
 interface Props {
   children: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const SignInWideButton: VFC<Props> = memo((props) => {
