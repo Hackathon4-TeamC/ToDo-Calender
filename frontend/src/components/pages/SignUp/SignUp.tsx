@@ -1,10 +1,16 @@
 import { memo, VFC } from "react";
 import { SignInSmallButton } from "../../atoms/shared/SignInSmallButton";
 import { SignInInput } from "../../atoms/shared/SignInInput";
-import styles from "./SignUp.module.css";
 import { SignInWideButton } from "../../atoms/shared/SignInWIdeButton";
+import { useNavigate } from "react-router-dom";
+import styles from "./SignUp.module.css";
 
 export const SignUp: VFC = memo(() => {
+  const navigate = useNavigate();
+  const transitionToSignin = () => {
+    navigate("/signin");
+  };
+
   return (
     <body className={styles.signupbody}>
       <div className={styles.signupcontainer}>
@@ -17,8 +23,12 @@ export const SignUp: VFC = memo(() => {
 
           <SignInWideButton>CREATE ACCOUNT</SignInWideButton>
           <div>
-            <SignInSmallButton>SIGN IN</SignInSmallButton>
-            <SignInSmallButton>GOOGLE</SignInSmallButton>
+            <SignInSmallButton onClick={transitionToSignin}>
+              SIGN IN
+            </SignInSmallButton>
+            <SignInSmallButton onClick={transitionToSignin}>
+              GOOGLE
+            </SignInSmallButton>
           </div>
         </div>
       </div>

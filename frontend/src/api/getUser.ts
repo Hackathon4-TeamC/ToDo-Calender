@@ -2,14 +2,14 @@
  * （テスト用）仮です
  */
 
-import { rest } from "../data/rest";
+import { axiosMock } from "../data/axiosMock";
 import { User } from "../types/User";
 
 export const getUsers = async (): Promise<User[]> => {
-  const url = "/user/list";
+  const url = "/users/list";
   try {
-    const { data } = await rest.get<User[]>(url);
-    return data;
+    const result = await axiosMock.get<User[]>(url);
+    return result.data;
   } catch (error) {
     throw new Error();
   }
