@@ -5,7 +5,7 @@
 import axios, { AxiosResponse } from "axios";
 import mock from "./mock/$mock";
 
-export const rest = (() => {
+export const axiosMock = (() => {
   const client = axios.create({
     baseURL: "", // 今回は未指定 (通常は env などから参照させる)
     timeout: 15000,
@@ -26,5 +26,5 @@ export const rest = (() => {
 
 const useMock = true;
 if (useMock) {
-  mock(rest.client).enableLog().setDelayTime(500);
+  mock(axiosMock.client).enableLog().setDelayTime(500);
 }

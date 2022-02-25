@@ -1,17 +1,16 @@
 /**
- * ログインのリクエスト
+ * ユーザー処理のリクエスト
  */
 
-import { rest } from "../data/rest";
+import { axiosMock } from "../data/axiosMock";
 import { User } from "../types/User";
 
 export const postLoginUser = async (
   inputEmail: string,
   inputPassword: string
 ) => {
-  const url = "/users/login";
   try {
-    const result = await rest.post<User>(url, {
+    const result = await axiosMock.post<User>("/users/login", {
       email: inputEmail,
       password: inputPassword,
     });
