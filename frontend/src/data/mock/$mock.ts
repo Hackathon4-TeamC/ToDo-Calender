@@ -2,8 +2,9 @@
 import { AxiosInstance } from 'axios'
 import mockServer from 'axios-mock-server'
 import mock0 from './users/register'
-import mock1 from './users/login'
-import mock2 from './users/list'
+import mock1 from './users/me'
+import mock2 from './users/login'
+import mock3 from './users/list'
 
 export default (client?: AxiosInstance) => mockServer([
   {
@@ -11,11 +12,15 @@ export default (client?: AxiosInstance) => mockServer([
     methods: mock0
   },
   {
-    path: '/users/login',
+    path: '/users/me',
     methods: mock1
   },
   {
-    path: '/users/list',
+    path: '/users/login',
     methods: mock2
+  },
+  {
+    path: '/users/list',
+    methods: mock3
   }
 ], client, '')
