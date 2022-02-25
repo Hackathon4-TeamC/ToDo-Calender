@@ -4,8 +4,8 @@ import styles from "./index.module.css";
 interface Props {
   type: string;
   placeholder: string;
-  value: string;
-  onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 export const SignInInput: VFC<Props> = memo((props) => {
   const { type, placeholder, value, onChange } = props;
