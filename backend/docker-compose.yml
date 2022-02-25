@@ -56,10 +56,10 @@ services:
       - fastapi_network
 
 networks:
-  default:
-    external:
-      name: bridge
+  # default:
+  #   external:
+  #     name: bridge
   fastapi_network:
     name: fastapi_network
     driver: bridge
-    external: true
+    # external: true
