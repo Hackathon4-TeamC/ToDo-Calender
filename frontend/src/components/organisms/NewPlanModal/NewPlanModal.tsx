@@ -47,7 +47,14 @@ export const NewPlanModal: VFC = memo(() => {
        </div>
        <div className={styles.PlanWeekHour}>
           <div>
-            <LerningCheckBox LerningPlanLabel={"学習する曜日"} />
+          <span>学習する曜日</span><br />
+            <LerningCheckBox LerningPlanLabel={"月"} />
+            <LerningCheckBox LerningPlanLabel={"火"} />
+            <LerningCheckBox LerningPlanLabel={"水"} />
+            <LerningCheckBox LerningPlanLabel={"木"} />
+            <LerningCheckBox LerningPlanLabel={"金"} />
+            <LerningCheckBox LerningPlanLabel={"土"} />
+            <LerningCheckBox LerningPlanLabel={"日"} />
           </div>
           <LerningPlanTime LerningPlanLabel={"学習時間"} />
         </div>
