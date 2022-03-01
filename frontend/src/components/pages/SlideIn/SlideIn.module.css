@@ -1,3 +1,45 @@
-.hello{
-    color: blue;
+
+.SlideInright {
+  float: right;
+  width: 930px;
+  height: 200px;
+  background-color: #dde8f1;
+  border: 1px solid #6bafe4;
+  border-left: none;
+  border-top: none;
 }
+
+   .SlideInRecord {
+     display: inline-block;
+     font-size: 10px;
+     width: 100%;
+     color: #1e5f91;
+     background-color: #82b9e4;
+     
+}   
+.SlideInleft {
+  float: right;
+  width: 250px;
+  height: 200px;
+  background-color: #dde8f1;
+  border: 1px solid #6bafe4;
+  border-top: none;
+}
+
+ .SlideInDay {
+   display: inline-block;
+   font-size: 10px;
+   width: 25%;
+   color: #1e5f91;
+   background-color: #82b9e4;
+   
+} 
+
+.SlideInTask {
+   display: inline-block;
+   font-size: 11px;
+   width: 75%;
+   color: #1e5f91;
+   background-color: #82b9e4;
+   
+}   
