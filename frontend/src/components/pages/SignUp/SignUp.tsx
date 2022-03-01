@@ -1,20 +1,37 @@
 import { memo, VFC } from "react";
+import { SignInSmallButton } from "../../atoms/shared/SignInSmallButton";
+import { SignInInput } from "../../atoms/shared/SignInInput";
+import { SignInWideButton } from "../../atoms/shared/SignInWIdeButton";
+import { useNavigate } from "react-router-dom";
 import styles from "./SignUp.module.css";
 
 export const SignUp: VFC = memo(() => {
-    return (
-        <body className={styles.SignUpBody}>
-            <div className={styles.container}>
-                <a className={styles.signuptxt}>SIGN UP</a>
-                <div className={styles.signUpform}>
-                    <input className={`${styles.form} ${styles.email}`} type="email" name="mail" placeholder="email" required></input>
-                    <input className={`${styles.form} ${styles.pass}`} type="password" name="pass" placeholder="password" id="pass" required></input>
-                    <input className={`${styles.form} ${styles.pass2}`} type="password" name="pass2" placeholder="confirm password" id="pass2" required></input>
-                
-                    <a href="#" className={`${styles.form} ${styles.CreateAccount}`}>CREATE ACCOUNT</a>
-                    <a href="#" className={`${styles.form} ${styles.SignInBtn}`}>GOOGLE</a>
-                </div>
-            </div>
-                    
-        </body>);
-})
+  const navigate = useNavigate();
+  const transitionToSignin = () => {
+    navigate("/signin");
+  };
+
+  return (
+    <body className={styles.signupbody}>
+      <div className={styles.signupcontainer}>
+        <h2 className={styles.signuptxt}>SIGN UP</h2>
+        <div className={styles.signupform}>
+          <SignInInput type="text" placeholder="username" />
+          <SignInInput type="email" placeholder="emai" />
+          <SignInInput type="password" placeholder="password" />
+          <SignInInput type="password" placeholder="confilm password" />
+
+          <SignInWideButton>CREATE ACCOUNT</SignInWideButton>
+          <div>
+            <SignInSmallButton onClick={transitionToSignin}>
+              SIGN IN
+            </SignInSmallButton>
+            <SignInSmallButton onClick={transitionToSignin}>
+              GOOGLE
+            </SignInSmallButton>
+          </div>
+        </div>
+      </div>
+    </body>
+  );
+});

@@ -1,32 +1,93 @@
-import { memo, VFC } from "react";
-import { SignInBtn } from "../../atoms/SignIn/SignInBtn/SignInBtn";
-import { SignInInput } from "../../atoms/SignIn/SignInInput/SignInInput";
+import { ChangeEvent, memo, useContext, useState, VFC } from "react";
 import styles from "./SignIn.module.css";
+import { useNavigate } from "react-router-dom";
+import { SignInSmallButton } from "../../atoms/shared/SignInSmallButton";
+import { SignInInput } from "../../atoms/shared/SignInInput";
+import { SignInWideButton } from "../../atoms/shared/SignInWIdeButton";
+import { postLoginUser } from "../../../api/userRequest";
+import { UserContext } from "../../../providers/UserProvider";
 
 export const SignIn: VFC = memo(() => {
-  return (
-    <body className={styles.SignInBody}>
-      <div className={styles.SignInCard}>
-        <div className={styles.SignInContainer}>
-          <div>
-            <h2 className={styles.SignIn}>SIGN IN</h2>
-          </div>
-          <div className={styles.formContainer}>
-            <SignInInput type={"email"} />
-            <div className={styles.underline}></div>
-            <SignInInput type={"password"} />
+  const navigate = useNavigate();
+  // state
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  //  グローバルなstate
+  const { setUserData } = useContext(UserContext);
 
-            <div className={styles.underline}></div>
-          </div>
+  // emailの値をstateにセットする
+  const onChangeEmailInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+  // passwordの値をstateにセットする
+  const onChangePasswordInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  /**
+   * signinボタンを押してバックエンドにサインインのリクエストを送る
+   * 正常に処理された場合,userDataに情報を保存、/homeへ遷移する
+   * emailとpasswordが空の場合は発火されない
+   */
+  const onClickSignin = () => {
+    if (!email || !password) {
+      textNoneMessage();
+      return;
+    }
+    postLoginUser(email, password)
+      .then((result) => {
+        if (result) {
+          setUserData(result);
+          localStorage.setItem("token", result.token);
+          navigate("/home");
+        }
+      })
+      .catch(() => setErrorMessage("パスワードかメールアドレスが違います"));
+  };
+
+  const textNoneMessage = () => {
+    setErrorMessage("メールアドレスとパスワードを入力してください");
+  };
+
+  const transitionToSignup = () => {
+    navigate("/signup");
+  };
+  return (
+    <div className={styles.signupbody}>
+      <div className={styles.signupcontainer}>
+        <h2 className={styles.signuptxt}>SIGN IN</h2>
+        <div className={styles.signupform}>
+          <SignInInput
+            type="email"
+            placeholder="email"
+            onChange={onChangeEmailInput}
+            value={email}
+          />
+          <p className={styles.inputMargin}></p>
+          <SignInInput
+            type="password"
+            placeholder="password"
+            onChange={onChangePasswordInput}
+            value={password}
+          />
+
           <div className={styles.buttonContainer}>
-            <button className={styles.loginBtn}>LOGIN</button>
-            <div className={styles.signinBtnContainer}>
-              <SignInBtn>SIGN UP</SignInBtn>
-              <SignInBtn>GOOGLE</SignInBtn>
+            <SignInWideButton onClick={onClickSignin}>SIGN IN</SignInWideButton>
+            <div className={styles.smallButtonContainer}>
+              <SignInSmallButton onClick={transitionToSignup}>
+                SIGN UP
+              </SignInSmallButton>
+              <SignInSmallButton onClick={transitionToSignup}>
+                GOOGLE
+              </SignInSmallButton>
             </div>
           </div>
+          {errorMessage ? (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          ) : null}
         </div>
       </div>
-    </body>
+    </div>
   );
 });
