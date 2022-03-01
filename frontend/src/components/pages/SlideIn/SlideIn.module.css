@@ -35,9 +35,9 @@
    
 } 
 
- .SlideInTask {
+.SlideInTask {
    display: inline-block;
-   font-size: 10px;
+   font-size: 11px;
    width: 75%;
    color: #1e5f91;
    background-color: #82b9e4;
