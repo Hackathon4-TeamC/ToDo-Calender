@@ -1,5 +1,5 @@
 import { memo, VFC } from "react";
-import { Menu, Sidebar } from "semantic-ui-react";
+import { Checkbox, Icon, Menu, Sidebar } from "semantic-ui-react";
 import styles from "./index.module.css";
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 
 export const SlideinBar: VFC<Props> = memo((props) => {
   const { visible, setVisible, dateStr } = props;
+  console.log(dateStr);
 
   return (
     <>
@@ -23,11 +24,33 @@ export const SlideinBar: VFC<Props> = memo((props) => {
         visible={visible}
         width="thin"
       >
-        <Menu.Item as="a">クリックしたよ</Menu.Item>
-        <Menu.Item as="a" className={styles.margin}>
-          {dateStr}
-        </Menu.Item>
-        <Menu.Item as="a"></Menu.Item>
+        <div className={styles.SlideInright}>
+          <div className={styles.SlideInRecord}>今日の記録</div>
+        </div>
+        <div className={styles.SlideInleft}>
+          <div>
+            <div className={styles.lerningDayContainer}>
+              <div className={styles.SlideInDay}>1月14日</div>
+              <div className={styles.SlideInTask}>学習タスク</div>
+            </div>
+          </div>
+
+          <div className={styles.taskContainer}>
+            <p className={styles.taskText}>寿司打</p>
+            <div className={styles.taskCheckItems}>
+              <div className={styles.learnningTime}>
+                <input type="time" />
+                学習時間
+              </div>
+              <div className={styles.taskCheckBox}>
+                <Checkbox label="完了" />
+              </div>
+              <div>
+                <Icon name="trash" size="large" />
+              </div>
+            </div>
+          </div>
+        </div>
       </Sidebar>
     </>
   );
