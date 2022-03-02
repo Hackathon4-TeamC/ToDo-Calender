@@ -2,7 +2,7 @@ import { memo, useState, VFC } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
-import { SlideInBottombar } from "../../organisms/SlideInBottombar";
+import { SlideinBar } from "../../organisms/SlideInbar/index";
 
 export const Calendar: VFC = memo(() => {
   // state
@@ -24,11 +24,7 @@ export const Calendar: VFC = memo(() => {
         dateClick={dateClick}
       />
 
-      <SlideInBottombar
-        visible={visible}
-        setVisible={setVisible}
-        dateStr={dateStr}
-      />
+      <SlideinBar visible={visible} setVisible={setVisible} dateStr={dateStr} />
     </div>
   );
 });

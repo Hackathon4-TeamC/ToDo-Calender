@@ -8,7 +8,7 @@ interface Props {
   dateStr: string | undefined;
 }
 
-export const SlideInBottombar: VFC<Props> = memo((props) => {
+export const SlideinBar: VFC<Props> = memo((props) => {
   const { visible, setVisible, dateStr } = props;
 
   return (

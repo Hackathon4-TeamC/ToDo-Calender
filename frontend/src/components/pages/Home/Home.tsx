@@ -1,11 +1,10 @@
-import { memo, useContext, useEffect, VFC } from "react";
+import { useContext, useEffect, VFC } from "react";
 import styles from "./Home.module.css";
 import { CalenderSidebar } from "../../organisms/CalenderSidebar/CalenderSidebar";
 
 import { UserContext } from "../../../providers/UserProvider";
 import { getMyUserData } from "../../../api/userRequest";
 import { Calendar } from "../Calendar/Calendar";
-import { SlideInBottombar } from "../../organisms/SlideInBottombar";
 
 export const Home: VFC = () => {
   //  グローバルstate
