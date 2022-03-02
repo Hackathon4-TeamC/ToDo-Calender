@@ -2,7 +2,7 @@ import { memo, useState, VFC } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
-import { SlideinBar } from "../SlideInbar/index";
+import { SlideinBar } from "../../molecules/SlideInbar/index";
 
 export const Calendar: VFC = memo(() => {
   // state

@@ -40,7 +40,7 @@ export const SignIn: VFC = memo(() => {
         if (result) {
           setUserData(result);
           localStorage.setItem("token", result.token);
-          navigate("/home");
+          navigate("/");
         }
       })
       .catch(() => setErrorMessage("パスワードかメールアドレスが違います"));
