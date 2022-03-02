@@ -12,8 +12,11 @@ export const axiosMock = (() => {
   });
   return {
     client,
-    get: <T = any, R = AxiosResponse<T>>(url: string): Promise<R> => {
-      return client.get(url);
+    get: <T = any, R = AxiosResponse<T>>(
+      url: string,
+      header?: any
+    ): Promise<R> => {
+      return client.get(url, header);
     },
     post: <T = any, R = AxiosResponse<T>>(
       url: string,
