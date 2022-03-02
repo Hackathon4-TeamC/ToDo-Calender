@@ -2,11 +2,13 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
+.slideinContainer {
+  display: flex;
+}
 
-.SlideInright {
-  float: right;
-  width: 930px;
-  height: 300px;
+.SlideInRight {
+  width: 50%;
+  height: 445px;
   background-color: #dde8f1;
   border: 1px solid #6bafe4;
   border-left: none;
@@ -14,18 +16,23 @@
 }
 
 .SlideInRecord {
+  text-align: center;
   display: inline-block;
   font-size: 20px;
   width: 100%;
-  color: #1e5f91;
-  background-color: #82b9e4;
-  padding: 14px;
+  color: white;
+  font-weight: bold;
+  background-color: #2185d0;
+  padding: 7px;
+}
+.textArea {
+  width: 100%;
+  height: 100%;
 }
 
 .SlideInleft {
-  float: right;
-  width: 508px;
-  height: 300px;
+  width: 50%;
+  height: 445px;
   background-color: #dde8f1;
   border: 1px solid #6bafe4;
   border-top: none;
@@ -33,10 +40,11 @@
 
 .lerningDayContainer {
   display: flex;
-  color: #1e5f91;
-  background-color: #82b9e4;
+  color: white;
+  font-weight: bold;
+  background-color: #2185d0;
   justify-content: center;
-  padding: 14px;
+  padding: 7px;
 }
 .SlideInDay {
   font-size: 20px;
@@ -53,6 +61,7 @@
 }
 .taskContainer {
   padding: 5px;
+  margin-bottom: -20px;
   display: flex;
   justify-content: space-between;
 }
