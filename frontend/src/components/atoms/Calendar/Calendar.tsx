@@ -2,17 +2,16 @@ import { memo, useState, VFC } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
-import { SlideInBottombar } from "../../organisms/SlideInBottombar";
+import { SlideinBar } from "../../organisms/SlideInbar/index";
 
 export const Calendar: VFC = memo(() => {
   // state
   const [visible, setVisible] = useState(false);
-  const [dateStr, setDate] = useState<string>();
+  const [date, setDate] = useState<Date>();
 
   const dateClick = (info: DateClickArg) => {
-    console.log("クリックしたよ", info.dateStr);
     setVisible(true);
-    setDate(info.dateStr);
+    setDate(info.date);
   };
   return (
     <div>
@@ -24,11 +23,7 @@ export const Calendar: VFC = memo(() => {
         dateClick={dateClick}
       />
 
-      <SlideInBottombar
-        visible={visible}
-        setVisible={setVisible}
-        dateStr={dateStr}
-      />
+      <SlideinBar visible={visible} setVisible={setVisible} date={date} />
     </div>
   );
 });
