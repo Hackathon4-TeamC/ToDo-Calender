@@ -1,5 +1,5 @@
 import { memo, VFC } from "react";
-import { Checkbox, Icon, Menu, Sidebar } from "semantic-ui-react";
+import { Checkbox, Icon, Sidebar } from "semantic-ui-react";
 import { MarkdownEditor } from "../../atoms/MarkdownEditor";
 import styles from "./index.module.css";
 
