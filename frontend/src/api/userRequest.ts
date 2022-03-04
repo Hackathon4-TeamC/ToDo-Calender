@@ -22,6 +22,24 @@ export const postLoginUser = async (
   }
 };
 
+// 新規登録リクエスト
+export const postRegisterUser = async (
+  inputUserName: string,
+  inputEmail: string,
+  inputPassword: string
+) => {
+  try {
+    const result = await axiosMock.post<User>("/users/register", {
+      user_name: inputUserName,
+      email: inputEmail,
+      password: inputPassword,
+    });
+    return result.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // ユーザー情報取得リクエスト
 export const getMyUserData = async (token: string) => {
   try {

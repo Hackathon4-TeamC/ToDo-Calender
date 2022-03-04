@@ -6,13 +6,18 @@ import { SignInInput } from "../../atoms/shared/SignInInput";
 import { SignInWideButton } from "../../atoms/shared/SignInWIdeButton";
 import { postLoginUser } from "../../../api/userRequest";
 import { UserContext } from "../../../providers/UserProvider";
+import { Loader } from "semantic-ui-react";
 
 export const SignIn: VFC = memo(() => {
   const navigate = useNavigate();
+
   // state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  // ローディングのフラグ
+  const [isLoading, setIsLoading] = useState(false);
+
   //  グローバルなstate
   const { setUserData } = useContext(UserContext);
 
@@ -32,9 +37,10 @@ export const SignIn: VFC = memo(() => {
    */
   const onClickSignin = () => {
     if (!email || !password) {
-      textNoneMessage();
+      setErrorMessage("メールアドレスとパスワードを入力してください");
       return;
     }
+    setIsLoading(true);
     postLoginUser(email, password)
       .then((result) => {
         if (result) {
@@ -43,11 +49,10 @@ export const SignIn: VFC = memo(() => {
           navigate("/");
         }
       })
-      .catch(() => setErrorMessage("パスワードかメールアドレスが違います"));
-  };
-
-  const textNoneMessage = () => {
-    setErrorMessage("メールアドレスとパスワードを入力してください");
+      .catch(() => setErrorMessage("パスワードかメールアドレスが違います"))
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const transitionToSignup = () => {
@@ -73,7 +78,13 @@ export const SignIn: VFC = memo(() => {
           />
 
           <div className={styles.buttonContainer}>
-            <SignInWideButton onClick={onClickSignin}>SIGN IN</SignInWideButton>
+            {isLoading ? (
+              <Loader active inline="centered" />
+            ) : (
+              <SignInWideButton onClick={onClickSignin}>
+                SIGN IN
+              </SignInWideButton>
+            )}
             <div className={styles.smallButtonContainer}>
               <SignInSmallButton onClick={transitionToSignup}>
                 SIGN UP
