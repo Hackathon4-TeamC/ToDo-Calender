@@ -10,6 +10,17 @@ import { WideButton } from "../../atoms/shared/WideButton";
 
 export const NewPlanModal: VFC = memo(() => {
   const [open, setOpen] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState("");
+  // button押したとき
+
+  // const onClickNewPlan = () => {
+  //   if (!newPlanName) {
+  //     textNoneMessage();
+  //   }
+  // }
+  // const textNoneMessage = () => {
+  //   setErrorMessage("未入力の項目があります");
+  // };
 
   return (
     <Modal
@@ -39,7 +50,10 @@ export const NewPlanModal: VFC = memo(() => {
         <Modal.Description>
       <div className={styles.PlanBody}>
         <div className={styles.PlanName}>
-          <NewPlanName LerningPlanLabel={"新規学習名"} />
+          <label>新規学習名</label>
+          <NewPlanName
+            type="text"
+            placeholder="学習プランの名称を入力してください" />
         </div>
        <div className={styles.PlanStartEnd}>
           <LerningPlanDays LerningPlanLabel={"開始"} />
@@ -58,6 +72,10 @@ export const NewPlanModal: VFC = memo(() => {
           </div>
           <LerningPlanTime LerningPlanLabel={"学習時間"} />
         </div>
+        {/* button押したときの挙動 */}
+        {/* {errorMessage ? (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          ) : null} */}
         <WideButton children={"学習計画を追加"} />
       </div>
         </Modal.Description>
