@@ -1,16 +1,19 @@
 import { memo, VFC } from "react";
-import { Checkbox, Icon, Sidebar } from "semantic-ui-react";
+import { Sidebar } from "semantic-ui-react";
+import { StudyRecord } from "../../../types/Calendar";
 import { MarkdownEditor } from "../../atoms/MarkdownEditor";
+import { LearningRocord } from "../../atoms/Slidebar/LearningRecord";
 import styles from "./index.module.css";
 
 interface Props {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   date: Date | undefined;
+  studyRecodes: StudyRecord[] | undefined;
 }
 
 export const SlideinBar: VFC<Props> = memo((props) => {
-  const { visible, setVisible, date } = props;
+  const { visible, setVisible, date, studyRecodes } = props;
 
   return (
     <>
@@ -32,22 +35,9 @@ export const SlideinBar: VFC<Props> = memo((props) => {
                 <div className={styles.SlideInTask}>学習タスク</div>
               </div>
             </div>
-
-            <div className={styles.taskContainer}>
-              <p className={styles.taskText}>寿司打</p>
-              <div className={styles.taskCheckItems}>
-                <div className={styles.learnningTime}>
-                  <input type="time" />
-                  学習時間
-                </div>
-                <div className={styles.taskCheckBox}>
-                  <Checkbox label="完了" />
-                </div>
-                <div>
-                  <Icon name="trash" size="large" />
-                </div>
-              </div>
-            </div>
+            {studyRecodes?.map((record) => {
+              return <LearningRocord todoTask={record.todo_task} />;
+            })}
           </div>
           <div className={styles.SlideInRight}>
             <div className={styles.SlideInRecord}>今日の記録</div>

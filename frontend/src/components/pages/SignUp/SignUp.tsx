@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { SignInSmallButton } from "../../atoms/shared/SignInSmallButton";
 import { SignInInput } from "../../atoms/shared/SignInInput";
 import { SignInWideButton } from "../../atoms/shared/SignInWIdeButton";
-import { postRegisterUser } from "../../../api/registerRequest";
+import { postRegisterUser } from "../../../api/userRequest";
 import { Loader } from "semantic-ui-react";
 
 export const SignUp: VFC = memo(() => {
