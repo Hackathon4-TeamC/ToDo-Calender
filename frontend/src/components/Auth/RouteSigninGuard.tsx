@@ -8,7 +8,7 @@ type Props = {
   redirect: string;
 };
 
-export const RouteAuthGuard: React.VFC<Props> = memo((props) => {
+export const RouteSigninGuard: React.VFC<Props> = memo((props) => {
   // 認証用hooks
   const { state, actions } = useAuth();
   // 現在のURLを取得
@@ -19,7 +19,7 @@ export const RouteAuthGuard: React.VFC<Props> = memo((props) => {
     actions.userAuth();
   }, []);
 
-  if (!state.userData) {
+  if (state.userData) {
     return state.isLoading ? (
       <PageLoading />
     ) : (
