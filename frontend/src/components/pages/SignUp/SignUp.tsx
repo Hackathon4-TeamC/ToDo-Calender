@@ -44,7 +44,7 @@ export const SignUp: VFC = memo(() => {
     postRegisterUser(name, email, password)
       .then((result) => {
         if (result) {
-          navigate("/home");
+          navigate("/");
         } 
       })
       .catch(() => setErrorMessage("メールアドレスとパスワードを入力してください"));
