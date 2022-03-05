@@ -38,5 +38,13 @@ SessionLocal = scoped_session(
 )
 
 
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
 # DB接続用のセッションクラス、インスタンスが作成されると接続する
 Base.query = SessionLocal.query_property()
