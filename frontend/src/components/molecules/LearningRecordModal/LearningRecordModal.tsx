@@ -15,7 +15,7 @@ export const LearningRecordModal: VFC = memo(() => {
       open={open}
       dimmer="inverted"
       trigger={
-        <PrimaryBotton modalOpen={() => setOpen(true)}>
+        <PrimaryBotton onClick={() => setOpen(true)}>
           学習記録を見る
         </PrimaryBotton>
       }

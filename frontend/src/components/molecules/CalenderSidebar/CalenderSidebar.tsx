@@ -1,4 +1,5 @@
-import { memo, VFC } from "react";
+import { memo, useContext, VFC } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   SidebarPushable,
   Sidebar,
@@ -6,14 +7,21 @@ import {
   Header,
   Menu,
 } from "semantic-ui-react";
+import { UserContext } from "../../../providers/UserProvider";
 import { ItemName } from "../../atoms/CalenderSidebar/ItemName/ItemName";
 import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
-import { ToggleBotton } from "../../atoms/CalenderSidebar/ToggleBotton/ToggleBotton";
 import { LearningRecordModal } from "../LearningRecordModal/LearningRecordModal";
 import { NewPlanModal } from "../NewPlanModal/NewPlanModal";
 import styles from "./CalenderSidebar.module.css";
 
 export const CalenderSidebar: VFC = memo(() => {
+  const { setUserData } = useContext(UserContext);
+  const navigate = useNavigate();
+  const onClickLogout = () => {
+    localStorage.removeItem("token");
+    setUserData(undefined);
+    navigate("/signin");
+  };
   return (
     <div className={styles.sidebarContainer}>
       <SidebarPushable as={Segment}>
@@ -34,14 +42,8 @@ export const CalenderSidebar: VFC = memo(() => {
             <LearningRecordModal />
           </div>
 
-          <div>
-            <ItemName>通知設定</ItemName>
-          </div>
-          <div className={styles.toggleBtn}>
-            <ToggleBotton>通知設定 OFF</ToggleBotton>
-          </div>
           <div className={styles.logoutBtn}>
-            <PrimaryBotton>ログアウト</PrimaryBotton>
+            <PrimaryBotton onClick={onClickLogout}>ログアウト</PrimaryBotton>
           </div>
         </Sidebar>
 

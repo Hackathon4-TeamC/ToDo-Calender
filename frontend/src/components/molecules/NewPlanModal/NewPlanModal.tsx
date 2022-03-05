@@ -18,7 +18,7 @@ export const NewPlanModal: VFC = memo(() => {
       open={open}
       dimmer="inverted"
       trigger={
-        <PrimaryBotton modalOpen={() => setOpen(true)}>
+        <PrimaryBotton onClick={() => setOpen(true)}>
           新規学習を作成
         </PrimaryBotton>
       }
@@ -37,29 +37,30 @@ export const NewPlanModal: VFC = memo(() => {
 
       <Modal.Content className={styles.modal}>
         <Modal.Description>
-      <div className={styles.PlanBody}>
-        <div className={styles.PlanName}>
-          <NewPlanName LerningPlanLabel={"新規学習名"} />
-        </div>
-       <div className={styles.PlanStartEnd}>
-          <LerningPlanDays LerningPlanLabel={"開始"} />
-          <LerningPlanDays LerningPlanLabel={"終了"} />
-       </div>
-       <div className={styles.PlanWeekHour}>
-          <div>
-          <span>学習する曜日</span><br />
-            <LerningCheckBox LerningPlanLabel={"月"} />
-            <LerningCheckBox LerningPlanLabel={"火"} />
-            <LerningCheckBox LerningPlanLabel={"水"} />
-            <LerningCheckBox LerningPlanLabel={"木"} />
-            <LerningCheckBox LerningPlanLabel={"金"} />
-            <LerningCheckBox LerningPlanLabel={"土"} />
-            <LerningCheckBox LerningPlanLabel={"日"} />
+          <div className={styles.PlanBody}>
+            <div className={styles.PlanName}>
+              <NewPlanName LerningPlanLabel={"新規学習名"} />
+            </div>
+            <div className={styles.PlanStartEnd}>
+              <LerningPlanDays LerningPlanLabel={"開始"} />
+              <LerningPlanDays LerningPlanLabel={"終了"} />
+            </div>
+            <div className={styles.PlanWeekHour}>
+              <div>
+                <span>学習する曜日</span>
+                <br />
+                <LerningCheckBox LerningPlanLabel={"月"} />
+                <LerningCheckBox LerningPlanLabel={"火"} />
+                <LerningCheckBox LerningPlanLabel={"水"} />
+                <LerningCheckBox LerningPlanLabel={"木"} />
+                <LerningCheckBox LerningPlanLabel={"金"} />
+                <LerningCheckBox LerningPlanLabel={"土"} />
+                <LerningCheckBox LerningPlanLabel={"日"} />
+              </div>
+              <LerningPlanTime LerningPlanLabel={"学習時間"} />
+            </div>
+            <WideButton children={"学習計画を追加"} />
           </div>
-          <LerningPlanTime LerningPlanLabel={"学習時間"} />
-        </div>
-        <WideButton children={"学習計画を追加"} />
-      </div>
         </Modal.Description>
       </Modal.Content>
     </Modal>
