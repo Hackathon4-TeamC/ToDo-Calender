@@ -7,7 +7,7 @@ from alembic import context
 
 import os
 import sqlalchemy_utils
-import models
+from sqlalchemy.ext.declarative import declarative_base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -15,19 +15,19 @@ config = context.config
 
 # DB接続用設定追加
 # connect to database
-DB_USER = os.environ.get('MYSQL_USER')
-DB_PASSWORD = os.environ.get('MYSQL_PASSWORD')
-DB_ROOT_PASSWORD = os.environ.get('MYSQL_ROOT_PASSWORD')
-DB_HOST = os.environ.get('MYSQL_HOST')
-DB_NAME = os.environ.get('MYSQL_DATABASE')
+DB_USER = os.environ.get("MYSQL_USER")
+DB_PASSWORD = os.environ.get("MYSQL_PASSWORD")
+DB_ROOT_PASSWORD = os.environ.get("MYSQL_ROOT_PASSWORD")
+DB_HOST = os.environ.get("MYSQL_HOST")
+DB_NAME = os.environ.get("MYSQL_DATABASE")
 
-DATABASE = 'mysql://%s:%s@%s/%s?charset=utf8' % (
+DATABASE = "mysql://%s:%s@%s/%s?charset=utf8" % (
     DB_USER,
     DB_PASSWORD,
     DB_HOST,
     DB_NAME,
 )
-config.set_main_option('sqlalchemy.url', DATABASE)
+config.set_main_option("sqlalchemy.url", DATABASE)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -38,19 +38,20 @@ fileConfig(config.config_file_name)
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
-target_metadata = models.Base.metadata  # 追加
+Base = declarative_base()
+target_metadata = Base.metadata  # 追加
+
 
 # UUIDのマイグレーション対応用関数追加
 def render_item(type_, obj, autogen_context):
-    """Apply custom rendering for selected items."""
-
-    if type_ == 'type' and isinstance(
-            obj, sqlalchemy_utils.types.uuid.UUIDType):
+    """Apply custom rendering for selected items.
+    """
+    if type_ == "type" and isinstance(obj, sqlalchemy_utils.types.uuid.UUIDType):
         autogen_context.imports.add("import sqlalchemy_utils")
         autogen_context.imports.add("import uuid")
         return "sqlalchemy_utils.types.uuid.UUIDType(binary=False), default=uuid.uuid4"
-
     return False
+
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -97,8 +98,9 @@ def run_migrations_online():
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata,
-            render_item=render_item  # 追加
+            connection=connection,
+            target_metadata=target_metadata,
+            render_item=render_item,  # 追加
         )
 
         with context.begin_transaction():
