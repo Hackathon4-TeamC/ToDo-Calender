@@ -8,4 +8,5 @@ RUN apt update \
 WORKDIR /usr/src/app
 ADD requirements.txt .
 RUN pip install -U pip \
-    && pip install --trusted-host pypi.python.org -r requirements.txt
+    && pip install --trusted-host pypi.python.org -r requirements.txt\
+    && python sql_app.database
