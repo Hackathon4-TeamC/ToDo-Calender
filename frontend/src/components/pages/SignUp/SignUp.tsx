@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useContext, useState, VFC } from "react";
+import { ChangeEvent, memo, useState, VFC } from "react";
 import styles from "./SignUp.module.css";
 import { useNavigate } from "react-router-dom";
 import { SignInSmallButton } from "../../atoms/shared/SignInSmallButton";
@@ -47,7 +47,7 @@ export const SignUp: VFC = memo(() => {
       .then((result) => {
         if (result) {
           navigate("/");
-        }
+        } 
       })
       .catch(() =>
         setErrorMessage("メールアドレスとパスワードを入力してください")
