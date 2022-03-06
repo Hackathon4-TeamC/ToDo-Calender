@@ -29,7 +29,7 @@ export const NewPlanModal: VFC = memo(() => {
       open={open}
       dimmer="inverted"
       trigger={
-        <PrimaryBotton modalOpen={() => setOpen(true)}>
+        <PrimaryBotton onClick={() => setOpen(true)}>
           新規学習を作成
         </PrimaryBotton>
       }

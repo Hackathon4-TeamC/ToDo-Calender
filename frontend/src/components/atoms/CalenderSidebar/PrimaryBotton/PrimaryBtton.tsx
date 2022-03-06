@@ -3,13 +3,13 @@ import { Button } from "semantic-ui-react";
 
 interface Props {
   children: string;
-  modalOpen?: () => void;
+  onClick?: () => void;
 }
 
 export const PrimaryBotton: VFC<Props> = memo((props) => {
-  const { children, modalOpen } = props;
+  const { children, onClick } = props;
   return (
-    <Button primary onClick={modalOpen}>
+    <Button primary onClick={onClick}>
       {children}
     </Button>
   );
