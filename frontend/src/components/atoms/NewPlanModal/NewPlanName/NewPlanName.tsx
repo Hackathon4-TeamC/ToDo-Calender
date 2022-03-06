@@ -1,18 +1,26 @@
-import { memo, VFC } from "react";
+import { ChangeEventHandler, memo, VFC } from "react";
 import styles from "./NewPlanName.module.css";
 
 interface Props {
-    LerningPlanLabel: string;
+    type: string;
+    placeholder: string;
+    value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
-
 export const NewPlanName: VFC<Props> = memo((props) => {
-    const { LerningPlanLabel } = props;
-    return (
-        <>
-            <div>
-                <label>{LerningPlanLabel}</label>
-                <input className={styles.NewPlanNameInput} type="text" />
-            </div>
-        </>
-    );
+  const { type, placeholder, value, onChange } = props;
+  return (
+    <>
+    <div>
+        <input
+            className={styles.NewPlanNameInput}
+            type={type}
+            name={type}
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+        ></input>
+    </div>
+    </>
+  );
 });
