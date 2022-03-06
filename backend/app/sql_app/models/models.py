@@ -9,10 +9,9 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = "users"
     user_id = Column(Integer, primary_key=True, autoincrement=True)
-    user_name = Column(String(30))
-    email = Column(String(30))
-    password = Column(String(30))
+    user_name = Column(String(255))
+    email = Column(String(255))
+    password = Column(String(255))
     joined_date = Column(DATETIME)
-    is_superuser = Column(Boolean)
-    is_staff = Column(Boolean)
     is_deleted = Column(Boolean)
+
