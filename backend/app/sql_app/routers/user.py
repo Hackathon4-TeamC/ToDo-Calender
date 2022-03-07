@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from typing import List
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from datetime import timedelta
@@ -16,28 +15,25 @@ router = APIRouter()
 
 
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.environ.get("ACCESS_TOKEN_EXPIRE_MINUTES"))
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/users/signin")
 
 
-@router.get("/users", response_model=List[user_schema.User])
-async def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    users = user_crud.get_users(db, skip=skip, limit=limit)
-    return users
-
-
-@router.post("/users", response_model=user_schema.User)
+@router.post("/users/register", response_model=user_schema.User)
 async def create_user(user: user_schema.UserCreate, db: Session = Depends(get_db)):
+    """ユーザーの新規登録
+    [args] user_name,password,email,joined_date
+    [return] UserCreate Class
+    """
     return user_crud.create_user(db=db, user=user)
 
 
-@router.post("/token", response_model=user_schema.SigninUser)
+@router.post("/users/signin", response_model=user_schema.SigninUser)
 async def signin(
     form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)
 ):
-    """リクエストから来たユーザー情報を検証して、返却
-    引数 from_data.username (実態はemail)
-        from_data.password
-    返却 DBのユーザー情報
+    """サインイン認証 dbのパスワードと入力されたパスワードを比較,jwtを生成する
+    [args] from_data.username (実態はemail),from_data.password
+    [return] DBのユーザー情報
     """
     user = user_crud.authenticate_user(db, form_data.username, form_data.password)
     if not user:
@@ -62,6 +58,10 @@ async def signin(
     return response_data
 
 
-@router.get("/user/me")
+@router.get("/users/me")
 async def read_user_me(current_user: User = Depends(user_crud.get_current_user)):
-    return {"the_token": "hello world"}
+    """jwt認証
+    [args] Authorization jwt
+    [return] User Class
+    """
+    return current_user
