@@ -18,6 +18,14 @@ class User(UserCreate):
         orm_mode = True
 
 
+class SigninUser(BaseModel):
+    user_id: int
+    user_name: str
+    email: str
+    joined_date: str
+    token: str
+
+
 class Token(BaseModel):
     access_token: str
     token_type: str
