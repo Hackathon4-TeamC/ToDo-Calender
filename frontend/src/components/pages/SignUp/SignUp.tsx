@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { SignInSmallButton } from "../../atoms/shared/SignInSmallButton";
 import { SignInInput } from "../../atoms/shared/SignInInput";
 import { SignInWideButton } from "../../atoms/shared/SignInWIdeButton";
-import { postRegisterUser } from "../../../api/userRequest";
+import { postLoginUser, postRegisterUser } from "../../../api/userRequest";
 import { Loader } from "semantic-ui-react";
+import { UserContext } from "../../../providers/UserProvider";
 
 export const SignUp: VFC = memo(() => {
   const navigate = useNavigate();
@@ -14,6 +15,9 @@ export const SignUp: VFC = memo(() => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  //  グローバルなstate
+  const { setUserData } = useContext(UserContext);
 
   // ローディングフラグ
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +38,7 @@ export const SignUp: VFC = memo(() => {
     setConfirmPassword(e.target.value);
   };
 
-  const onClickCreateAccount = () => {
+  const onClickCreateAccount = async () => {
     if (!name || !email || !password || !confirmPassword) {
       setErrorMessage("未入力の項目があります");
       return;
@@ -43,18 +47,21 @@ export const SignUp: VFC = memo(() => {
       return;
     }
     setIsLoading(true);
-    postRegisterUser(name, email, password)
-      .then((result) => {
-        if (result) {
+    try {
+      const signinResult = await postRegisterUser(name, email, password);
+      if (signinResult) {
+        const signupResult = await postLoginUser(signinResult.email, password);
+        if (signupResult) {
+          setUserData(signupResult);
+          localStorage.setItem("token", signupResult.token);
           navigate("/");
-        } 
-      })
-      .catch(() =>
-        setErrorMessage("メールアドレスとパスワードを入力してください")
-      )
-      .finally(() => {
-        setIsLoading(false);
-      });
+        }
+      }
+    } catch {
+      setErrorMessage("サインインできませんでした");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const transitionToSignin = () => {
