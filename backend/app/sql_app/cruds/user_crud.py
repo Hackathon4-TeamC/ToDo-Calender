@@ -49,8 +49,8 @@ def verify_password(plain_password, hashed_password):
 
 def authenticate_user(db, username: str, password: str):
     """ユーザーの認証
-    ユーザーがdbに登録されているか
-    パスワードが正しいか
+    [args] db,fromdata.username(中身はuser_email),fromdata.password
+    [return] dbのuserデータ
     """
     user = get_user(db, username)
     if not user:
@@ -62,8 +62,8 @@ def authenticate_user(db, username: str, password: str):
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     """jwtを作成、返却
-    引数 ユーザーデータ,jwtの有効期限
-    返却 jwt
+    [args] ユーザーデータ,jwtの有効期限
+    [return] jwt
     """
     to_encode = data.copy()
     if expires_delta:
@@ -81,6 +81,10 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/users/signin")
 async def get_current_user(
     token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
 ):
+    """トークンをデコード,DBのユーザー情報を取得
+    [args] token,db
+    [return] userデータ
+    """
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",

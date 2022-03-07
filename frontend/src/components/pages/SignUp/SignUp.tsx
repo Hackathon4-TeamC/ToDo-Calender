@@ -57,9 +57,8 @@ export const SignUp: VFC = memo(() => {
           navigate("/");
         }
       }
-    } catch (err) {
+    } catch {
       setErrorMessage("サインインできませんでした");
-      console.log(err);
     } finally {
       setIsLoading(false);
     }
