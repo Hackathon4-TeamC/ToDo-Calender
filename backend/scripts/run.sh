@@ -9,6 +9,6 @@ done
 cd /usr/src/app/db && alembic upgrade head
 # cd /usr/src/app/db && python seed.py
 
-
+cd /usr/src/app/app/sql_app && python database.py
 cd /usr/src/app/app && uvicorn sql_app.main:app --reload --port=8000 --host=0.0.0.0
 
