@@ -3,8 +3,9 @@
  */
 
 import axios from "axios";
-import { axiosMock } from "../data/axiosMock";
 import { User } from "../types/User";
+
+const URL = "http://localhost:8000";
 
 // ログインのリクエスト
 export const postLoginUser = async (
@@ -12,13 +13,23 @@ export const postLoginUser = async (
   inputPassword: string
 ) => {
   try {
-    const result = await axiosMock.post<User>("/users/login", {
-      email: inputEmail,
-      password: inputPassword,
-    });
+    const formData = new FormData();
+    // emailをusernameとしている（FastAPIの仕様）
+    formData.append("username", inputEmail);
+    formData.append("password", inputPassword);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    const result = await axios.post<User>(
+      `${URL}/users/signin`,
+      formData,
+      config
+    );
     return result.data;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    throw new Error(err);
   }
 };
 
@@ -29,27 +40,29 @@ export const postRegisterUser = async (
   inputPassword: string
 ) => {
   try {
-    const result = await axiosMock.post<User>("/users/register", {
+    const result = await axios.post<User>(`${URL}/users/register`, {
       user_name: inputUserName,
       email: inputEmail,
       password: inputPassword,
+      joined_date: "2022-03-07",
+      is_deleted: false,
     });
     return result.data;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    throw new Error(err);
   }
 };
 
 // ユーザー情報取得リクエスト
 export const getMyUserData = async (token: string) => {
   try {
-    const result = await axiosMock.get<User>("/users/me", {
+    const result = await axios.get<User>(`${URL}/users/me`, {
       headers: {
-        Authorizaton: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return result.data;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    throw new Error(err);
   }
 };

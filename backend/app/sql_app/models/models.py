@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, DATETIME
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
@@ -10,14 +10,11 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = "users"
     user_id = Column(Integer, primary_key=True, autoincrement=True)
-    user_name = Column(String(30))
-    email = Column(String(30))
-    password = Column(String(30))
-    joined_date = Column(DateTime)
-    is_superuser = Column(Boolean)
-    is_staff = Column(Boolean)
+    user_name = Column(String(255))
+    email = Column(String(255))
+    password = Column(String(255))
+    joined_date = Column(DATETIME)
     is_deleted = Column(Boolean)
-
 
 
 class Todo(Base):
@@ -28,3 +25,5 @@ class Todo(Base):
     learning_date = Column(DateTime)
     learning_time = Column(Integer)
     is_done = Column(Boolean)
+
+
