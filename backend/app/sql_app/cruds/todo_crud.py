@@ -14,16 +14,16 @@ def get_todos(db: Session, skip: int = 0, limit: int = 100):
 def create_todo(db: Session, todo: todo_schema.Todo):
     #学習期間内で何日後にtaskがあるかをlistで取得
     days_length = (todo.end_date - todo.start_date).days + 1
-    length_to_learing_day = []
+    length_to_learning_day = []
     for i in range(days_length):
         if todo.start_date.weekday() in todo.learning_weekday:
-            length_to_learing_day.append(i)
+            length_to_learning_day.append(i)
 
-    for length in length_to_learing_day:
+    for length in length_to_learning_day:
         db_todo = models.Todo(
             user_id=todo.user_id,
             todo_task=todo.todo_task,
-            learning_date='2022-02-02',
+            learning_date=todo.start_date,
             learning_time=todo.learning_time,
             is_done=0,
         )

@@ -22,7 +22,7 @@ class Todo(Base):
     todo_id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, nullable=False)
     todo_task = Column(String(30))
-    learning_date = Column(DateTime)
+    learning_date = Column(DATETIME)
     learning_time = Column(Integer)
     is_done = Column(Boolean)
 
