@@ -1,7 +1,6 @@
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
-class Memo(BaseModel):
-    id: int
+class Create_memo(BaseModel):
     memo_text: str
-    # written_date : datetime.date
+    #ritten_date : datetime.date
