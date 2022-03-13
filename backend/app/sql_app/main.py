@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from sql_app.routers import todo
 from sql_app.routers import user
+from sql_app.routers import memo
 
 
 app = FastAPI()
@@ -10,6 +11,8 @@ app = FastAPI()
 # ルーターの設定
 app.include_router(user.router)
 app.include_router(todo.router)
+app.include_router(memo.router)
+
 
 # corsの設定
 origins = [
