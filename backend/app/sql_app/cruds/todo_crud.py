@@ -9,7 +9,7 @@ import locale
 locale.setlocale(locale.LC_ALL, "ja_JP.UTF-8")
 
 
-def get_todos(db: Session, skip: int = 0, limit: int = 100):
+def get_todos_list(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Todo).offset(skip).limit(limit).all()
 
 
@@ -38,3 +38,14 @@ def create_todo(db: Session, todo: todo_schema.TodoCreate):
     db.close
     return "ok! input todo data"
 
+
+def get_daily_todos(request_date: datetime.date, user_id: int, db: Session):
+    response_data = (
+        db.query(models.Todo)
+        .filter(
+            models.Todo.execution_date == request_date
+            and models.Todo.user_id == user_id
+        )
+        .all()
+    )
+    return response_data

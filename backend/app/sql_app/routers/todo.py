@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List
+import datetime
 
 
 from sql_app.cruds import todo_crud
@@ -11,10 +12,9 @@ from sql_app.database import get_db
 router = APIRouter()
 
 
-@router.get("/todos", response_model=List[todo_schema.ResponseTodo])
+@router.get("/todos/list", response_model=List[todo_schema.ResponseTodo])
 async def read_todos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    todos = todo_crud.get_todos(db, skip=skip, limit=limit)
-    print(type(todos[0].todo_id))
+    todos = todo_crud.get_todos_list(db, skip=skip, limit=limit)
     return todos
 
 
@@ -22,3 +22,10 @@ async def read_todos(skip: int = 0, limit: int = 100, db: Session = Depends(get_
 async def create_todo(todo: todo_schema.TodoCreate, db: Session = Depends(get_db)):
     return todo_crud.create_todo(db=db, todo=todo)
 
+
+@router.get("/todos/")
+async def get_todo(
+    year: int, month: int, date: int, user_id: int, db: Session = Depends(get_db)
+):
+    request_date = datetime.date(year, month, date)
+    return todo_crud.get_daily_todos(request_date, user_id, db)
