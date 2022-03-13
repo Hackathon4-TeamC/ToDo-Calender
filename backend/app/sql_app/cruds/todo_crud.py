@@ -1,3 +1,4 @@
+from operator import and_
 from sqlalchemy.orm import Session
 from sql_app.schemas import todo_schema
 from sql_app.models import models
@@ -40,11 +41,18 @@ def create_todo(db: Session, todo: todo_schema.TodoCreate):
 
 
 def get_daily_todos(request_date: datetime.date, user_id: int, db: Session):
+    """指定された日時,user_idから学習記録を返却
+    [args] request_date,user_id,db
+    [return] todo_schema.Response_Todo
+    """
+
     response_data = (
         db.query(models.Todo)
         .filter(
-            models.Todo.execution_date == request_date
-            and models.Todo.user_id == user_id
+            and_(
+                models.Todo.user_id == user_id,
+                models.Todo.execution_date == request_date,
+            )
         )
         .all()
     )
