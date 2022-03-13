@@ -1,6 +1,6 @@
 import { memo, VFC } from "react";
 import { Sidebar } from "semantic-ui-react";
-import { StudyRecord } from "../../../types/Calendar";
+import { Todo } from "../../../types/Todo";
 import { MarkdownEditor } from "../../atoms/MarkdownEditor";
 import { LearningRocord } from "../../atoms/Slidebar/LearningRecord";
 import styles from "./index.module.css";
@@ -9,7 +9,7 @@ interface Props {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   date: Date | undefined;
-  studyRecodes: StudyRecord[] | undefined;
+  studyRecodes: Todo[] | undefined;
 }
 
 export const SlideinBar: VFC<Props> = memo((props) => {
