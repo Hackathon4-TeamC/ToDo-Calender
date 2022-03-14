@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DATETIME, Boolean
+from sqlalchemy import Column, Integer, String, DATETIME, Boolean, Time
 from sqlalchemy.ext.declarative import declarative_base
 
 # modelで使用する
@@ -23,4 +23,4 @@ class Todo(Base):
     todo_task = Column(String(30))
     execution_date = Column(DATETIME)
     is_done = Column(Boolean)
-    learning_time = Column(Integer)
+    learning_time = Column(Time)

@@ -9,13 +9,13 @@ class TodoCreate(BaseModel):
     start_date: datetime.date
     end_date: datetime.date
     learning_weekday: List[str]
-    learning_time: int
+    learning_time: datetime.time
 
 
 class TodoSaveToDb(BaseModel):
     user_id: int
     todo_task: str
-    learning_time: int
+    learning_time: datetime.time
     is_done: bool
     todo_id: int
 
