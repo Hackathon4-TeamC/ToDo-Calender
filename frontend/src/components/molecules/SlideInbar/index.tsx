@@ -36,7 +36,14 @@ export const SlideinBar: VFC<Props> = memo((props) => {
               </div>
             </div>
             {studyRecodes?.map((record) => {
-              return <LearningRocord todoTask={record.todo_task} />;
+              return (
+                <LearningRocord
+                  todoTask={record.todo_task}
+                  isDone={record.is_done}
+                  learningTime={record.learning_time}
+                  todoID={record.todo_id}
+                />
+              );
             })}
           </div>
           <div className={styles.SlideInRight}>

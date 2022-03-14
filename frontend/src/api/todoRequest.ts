@@ -16,3 +16,25 @@ export const getDailyTodos = async (selectDate: Date, userID: number) => {
     throw new Error(err);
   }
 };
+
+export const postLearningPlan = async (
+  userID: number,
+  todo: string,
+  startDate: string,
+  endDate: string,
+  weekDay: string[],
+  learningTime: string
+) => {
+  try {
+    axios.post(`${URL}/todos`, {
+      user_id: userID,
+      todo_task: todo,
+      start_date: startDate,
+      end_date: endDate,
+      learning_weekday: weekDay,
+      learning_time: learningTime,
+    });
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
