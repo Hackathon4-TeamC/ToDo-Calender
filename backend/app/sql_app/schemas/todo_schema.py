@@ -12,16 +12,23 @@ class TodoCreate(BaseModel):
     learning_time: int
 
 
-class ResponseTodo(BaseModel):
+class TodoSaveToDb(BaseModel):
     user_id: int
     todo_task: str
-    execution_date: datetime.datetime
     learning_time: int
     is_done: bool
     todo_id: int
 
     class Config:
         orm_mode = True
+
+
+class ResponseTodo(TodoSaveToDb):
+    execution_date: datetime.datetime
+
+
+class PutTodo(TodoSaveToDb):
+    execution_date: datetime.date
 
 
 class Todo(TodoCreate):

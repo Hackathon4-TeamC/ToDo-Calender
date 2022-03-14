@@ -29,3 +29,8 @@ async def get_todo(
 ):
     request_date = datetime.date(year, month, date)
     return todo_crud.get_daily_todos(request_date, user_id, db)
+
+
+@router.put("/todos")
+async def put_todo(req_todo: todo_schema.PutTodo, db: Session = Depends(get_db)):
+    return todo_crud.todo_update_db(req_todo, db)

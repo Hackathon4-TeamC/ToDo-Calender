@@ -57,3 +57,22 @@ def get_daily_todos(request_date: datetime.date, user_id: int, db: Session):
         .all()
     )
     return response_data
+
+
+def todo_update_db(req_todo: todo_schema.PutTodo, db: Session):
+    """user_id,todo_idで更新する記録を検索,リクエストで飛んできた内容に書き換える
+    [args] req_tod : PutTodo , db
+    [return] string
+    """
+    fetch_from_db = (
+        db.query(models.Todo).filter(
+            and_(
+                models.Todo.user_id == req_todo.user_id,
+                models.Todo.todo_id == req_todo.todo_id,
+            )
+        )
+    ).first()
+    fetch_from_db.is_done = req_todo.is_done
+    fetch_from_db.learning_time = req_todo.learning_time
+    db.commit()
+    return "ok!! todo put"
