@@ -1,18 +1,25 @@
-import { memo, VFC } from "react";
+import { ChangeEventHandler, memo, VFC } from "react";
 import styles from "./LerningCheckBox.module.css";
 
 interface Props {
-    LerningPlanLabel: string;
+  LerningPlanLabel: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  value?: string;
 }
 
 export const LerningCheckBox: VFC<Props> = memo((props) => {
-    const { LerningPlanLabel } = props;
-    return (
-        <>
-            <div className={styles.CheckBoxContainer}>
-                <label>{LerningPlanLabel}</label>
-                <input className={styles.LerningCheckBoxInput} type="checkbox" />
-            </div>
-        </>
-    );
+  const { LerningPlanLabel, onChange, value } = props;
+  return (
+    <>
+      <div className={styles.CheckBoxContainer}>
+        <label>{LerningPlanLabel}</label>
+        <input
+          className={styles.LerningCheckBoxInput}
+          type="checkbox"
+          onChange={onChange}
+          value={value}
+        />
+      </div>
+    </>
+  );
 });

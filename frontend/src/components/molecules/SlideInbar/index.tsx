@@ -1,19 +1,31 @@
 import { memo, VFC } from "react";
 import { Sidebar } from "semantic-ui-react";
-import { StudyRecord } from "../../../types/Calendar";
+import { Todo } from "../../../types/Todo";
 import { MarkdownEditor } from "../../atoms/MarkdownEditor";
 import { LearningRocord } from "../../atoms/Slidebar/LearningRecord";
+import { CalendarDrawing } from "../../organisms/Calendar/Calendar";
 import styles from "./index.module.css";
 
 interface Props {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   date: Date | undefined;
-  studyRecodes: StudyRecord[] | undefined;
+  todos: Todo[] | undefined;
+  setCalendarDrawing: React.Dispatch<
+    React.SetStateAction<CalendarDrawing[] | undefined>
+  >;
+  calendarDrawing: CalendarDrawing[] | undefined;
 }
 
 export const SlideinBar: VFC<Props> = memo((props) => {
-  const { visible, setVisible, date, studyRecodes } = props;
+  const {
+    visible,
+    setVisible,
+    date,
+    todos,
+    setCalendarDrawing,
+    calendarDrawing,
+  } = props;
 
   return (
     <>
@@ -22,7 +34,7 @@ export const SlideinBar: VFC<Props> = memo((props) => {
         direction="bottom"
         icon="labeled"
         onHide={() => setVisible(false)}
-        vertical
+        vertical={true}
         visible={visible}
       >
         <div className={styles.slideinContainer}>
@@ -35,8 +47,15 @@ export const SlideinBar: VFC<Props> = memo((props) => {
                 <div className={styles.SlideInTask}>学習タスク</div>
               </div>
             </div>
-            {studyRecodes?.map((record) => {
-              return <LearningRocord todoTask={record.todo_task} />;
+            {todos?.map((todo) => {
+              return (
+                <LearningRocord
+                  key={todo.todo_id}
+                  todoData={todo}
+                  setCalendarDrawing={setCalendarDrawing}
+                  calendarDrawing={calendarDrawing}
+                />
+              );
             })}
           </div>
           <div className={styles.SlideInRight}>

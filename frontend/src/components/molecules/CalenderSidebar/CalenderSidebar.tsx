@@ -29,7 +29,7 @@ export const CalenderSidebar: VFC = memo(() => {
           as={Menu}
           animation="overlay"
           icon="labeled"
-          vertical
+          vertical={true}
           visible
           width="thin"
         >
