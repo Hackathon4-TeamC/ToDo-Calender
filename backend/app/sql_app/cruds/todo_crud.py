@@ -75,4 +75,22 @@ def todo_update_db(req_todo: todo_schema.PutTodo, db: Session):
     fetch_from_db.is_done = req_todo.is_done
     fetch_from_db.learning_time = req_todo.learning_time
     db.commit()
-    return "ok!! todo put"
+    # もう一度取得
+    response_data = (
+        db.query(models.Todo).filter(
+            and_(
+                models.Todo.user_id == req_todo.user_id,
+                models.Todo.todo_id == req_todo.todo_id,
+            )
+        )
+    ).first()
+    return response_data
+
+
+def get_user_isdone_todolist(user_id: int, db: Session):
+    response_data = (
+        db.query(models.Todo)
+        .filter(and_(models.Todo.user_id == user_id, models.Todo.is_done == True))
+        .all()
+    )
+    return response_data

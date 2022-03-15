@@ -27,8 +27,11 @@ class ResponseTodo(TodoSaveToDb):
     execution_date: datetime.datetime
 
 
-class PutTodo(TodoSaveToDb):
-    execution_date: datetime.date
+class PutTodo(BaseModel):
+    user_id: int
+    todo_id: int
+    learning_time: datetime.time
+    is_done: bool
 
 
 class Todo(TodoCreate):

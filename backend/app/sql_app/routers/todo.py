@@ -23,7 +23,7 @@ async def create_todo(todo: todo_schema.TodoCreate, db: Session = Depends(get_db
     return todo_crud.create_todo(db=db, todo=todo)
 
 
-@router.get("/todos/")
+@router.get("/todos/", response_model=List[todo_schema.ResponseTodo])
 async def get_todo(
     year: int, month: int, date: int, user_id: int, db: Session = Depends(get_db)
 ):
@@ -31,6 +31,11 @@ async def get_todo(
     return todo_crud.get_daily_todos(request_date, user_id, db)
 
 
-@router.put("/todos")
+@router.put("/todos", response_model=todo_schema.ResponseTodo)
 async def put_todo(req_todo: todo_schema.PutTodo, db: Session = Depends(get_db)):
     return todo_crud.todo_update_db(req_todo, db)
+
+
+@router.get("/todos/user/list/{user_id}", response_model=List[todo_schema.ResponseTodo])
+async def get_user_isdone_todolist(user_id: int, db: Session = Depends(get_db)):
+    return todo_crud.get_user_isdone_todolist(user_id, db)
