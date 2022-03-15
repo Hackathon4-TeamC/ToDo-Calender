@@ -1,3 +1,4 @@
+from numpy import integer
 from sqlalchemy import Column, Integer, String, DATETIME, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -15,3 +16,10 @@ class User(Base):
     joined_date = Column(DATETIME)
     is_deleted = Column(Boolean)
 
+# Create_memo
+class Memo(Base):
+    __tablename__ = "memos"
+    memo_id = Column(integer, primary_key=True, autoincrement=True)
+    memo_txt = Column(String(2000))
+    written_date = Column(DATETIME)
+    is_deleted = Column(Boolean)
