@@ -6,7 +6,7 @@ import sql_app.schemas.memo as memo_schema
 router = APIRouter()
 
 @router.get("/memo")
-async def memo(memo_id: int, memo: Optional[str] = None):
+async def memo(memo_id: memo_schema.memo, memo: memo_schema.memo):
     return {
         "memo_id": memo_id,
         "memo": memo
