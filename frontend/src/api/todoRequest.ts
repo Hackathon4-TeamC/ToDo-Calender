@@ -2,7 +2,7 @@ import axios from "axios";
 import { Todo } from "../types/Todo";
 
 const URL = "http://localhost:8000";
-export const getDailyTodos = async (selectDate: Date, userID: number) => {
+export const getIsDoneDailyTodos = async (selectDate: Date, userID: number) => {
   try {
     const year = selectDate.getFullYear();
     const month = selectDate.getMonth() + 1;
@@ -34,6 +34,29 @@ export const postLearningPlan = async (
       learning_weekday: weekDay,
       learning_time: learningTime,
     });
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
+export const putLearningPlan = async (todoData: Todo, isDone: boolean) => {
+  try {
+    const result = await axios.put<Todo>(`${URL}/todos`, {
+      user_id: todoData.user_id,
+      todo_id: todoData.todo_id,
+      learning_time: todoData.learning_time,
+      is_done: isDone,
+    });
+    return result.data;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
+export const getUserTodoList = async (userID: number) => {
+  try {
+    const result = await axios.get<Todo[]>(`${URL}/todos/user/list/${userID}`);
+    return result.data;
   } catch (err: any) {
     throw new Error(err);
   }

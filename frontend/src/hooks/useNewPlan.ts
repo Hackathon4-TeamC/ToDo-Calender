@@ -47,6 +47,7 @@ export const useNewPlan = () => {
       return;
     }
     if (!dateComparisonErrorHandling()) return;
+
     postLearningPlan(
       userData.user_id,
       learningItem,
@@ -76,7 +77,6 @@ export const useNewPlan = () => {
 
   const onCloseModal = () => {
     setOpen(false);
-    setErrorMessage("");
     allStatesClear();
   };
 
