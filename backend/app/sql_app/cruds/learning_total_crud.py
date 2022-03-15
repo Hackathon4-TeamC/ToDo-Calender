@@ -1,10 +1,17 @@
 from sqlalchemy.orm import Session
+from operator import and_
+
+
 from sql_app.models import models
 
 
 def total_time(user_id: int, db: Session):
     total_time = 0
-    fetch_from_db = db.query(models.Todo).filter(models.Todo.user_id == user_id).all()
+    fetch_from_db = (
+        db.query(models.Todo)
+        .filter(and_(models.Todo.user_id == user_id, models.Todo.is_done == True))
+        .all()
+    )
 
     for time in fetch_from_db:
         time_str = str(time.learning_time)
