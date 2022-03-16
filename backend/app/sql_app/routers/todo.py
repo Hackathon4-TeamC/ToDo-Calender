@@ -39,3 +39,8 @@ async def put_todo(req_todo: todo_schema.PutTodo, db: Session = Depends(get_db))
 @router.get("/todos/user/list/{user_id}", response_model=List[todo_schema.ResponseTodo])
 async def get_user_isdone_todolist(user_id: int, db: Session = Depends(get_db)):
     return todo_crud.get_user_isdone_todolist(user_id, db)
+
+
+@router.delete("/todos/")
+async def delete_todo(todo_id: int, db: Session = Depends(get_db)):
+    return todo_crud.delete_todo(todo_id, db)

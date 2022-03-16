@@ -1,3 +1,5 @@
+import datetime
+import calendar
 from sqlalchemy import distinct
 from sqlalchemy.orm import Session
 from operator import and_
@@ -43,6 +45,31 @@ def items_time(user_id: int, db: Session):
         )
         response_data.append(total_time_counter(item_data, todo[0]))
     return response_data
+
+
+def monthly_total_time(user_id: int, db: Session):
+    """今日の日付からその月の最初の日と最後の日を出して、その範囲内でDBを中身を取り出す。
+        取り出したDBの値から総学習時間を計算して、秒数で返却する。
+    [args] user_id,db
+    [return] {todo_task : 'monthly_total' , total_sec : int}
+    """
+    today = datetime.date.today()
+    first_day = today.replace(day=1)
+    calculating_last_day = last_day = calendar.monthrange(today.year, today.month)[1]
+    last_day = today.replace(day=calculating_last_day)
+    fetch_from_db = (
+        db.query(models.Todo)
+        .filter(
+            and_(
+                models.Todo.execution_date >= first_day,
+                models.Todo.execution_date <= last_day,
+            ),
+            models.Todo.user_id == user_id,
+            models.Todo.is_done == 1,
+        )
+        .all()
+    )
+    return total_time_counter(fetch_from_db, "monthly_total")
 
 
 def total_time_counter(todo_data: todo_schema.Todo, task_name: str):

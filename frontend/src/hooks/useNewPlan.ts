@@ -9,7 +9,7 @@ export const useNewPlan = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [checkWeekDay, setCheckWeekDay] = useState<string[]>([]);
-  const [learningTime, setLearnningTime] = useState("");
+  const [learningTime, setLearnningTime] = useState("01:00");
   const [errorMessage, setErrorMessage] = useState("");
 
   // 学習項目のinputをstateに保存
@@ -71,7 +71,7 @@ export const useNewPlan = () => {
     setStartDate("");
     setEndDate("");
     setCheckWeekDay([]);
-    setLearnningTime("");
+    setLearnningTime("01:00");
     setErrorMessage("");
   };
 

@@ -22,3 +22,7 @@ async def total_time(user_id: int, db: Session = Depends(get_db)):
 async def items_time(user_id: int, db: Session = Depends(get_db)):
     return learning_total_crud.items_time(user_id, db)
 
+
+@router.get("/total/monthly/{user_id}", response_model=learning_total_schema.TotalSec)
+async def monthly_total_time(user_id: int, db: Session = Depends(get_db)):
+    return learning_total_crud.monthly_total_time(user_id, db)

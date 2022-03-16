@@ -10,7 +10,8 @@ interface Props {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   date: Date | undefined;
-  todos: Todo[] | undefined;
+  dailyTodos: Todo[] | undefined;
+  setDailyTodos: React.Dispatch<React.SetStateAction<Todo[] | undefined>>;
   setCalendarDrawing: React.Dispatch<
     React.SetStateAction<CalendarDrawing[] | undefined>
   >;
@@ -22,9 +23,10 @@ export const SlideinBar: VFC<Props> = memo((props) => {
     visible,
     setVisible,
     date,
-    todos,
+    dailyTodos,
     setCalendarDrawing,
     calendarDrawing,
+    setDailyTodos,
   } = props;
 
   return (
@@ -47,13 +49,15 @@ export const SlideinBar: VFC<Props> = memo((props) => {
                 <div className={styles.SlideInTask}>学習タスク</div>
               </div>
             </div>
-            {todos?.map((todo) => {
+            {dailyTodos?.map((todo) => {
               return (
                 <LearningRocord
                   key={todo.todo_id}
                   todoData={todo}
                   setCalendarDrawing={setCalendarDrawing}
+                  setDailyTodos={setDailyTodos}
                   calendarDrawing={calendarDrawing}
+                  dailyTodos={dailyTodos}
                 />
               );
             })}

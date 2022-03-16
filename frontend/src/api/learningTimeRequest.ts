@@ -21,3 +21,14 @@ export const getItemsTatalTime = async (userID: number) => {
     throw new Error(err);
   }
 };
+
+export const getMonthlyTotalTime = async (userID: number) => {
+  try {
+    const result = await axios.get<TotalTimeType>(
+      `${URL}/total/monthly/${userID}`
+    );
+    return result.data;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};

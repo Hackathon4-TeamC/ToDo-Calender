@@ -1,4 +1,4 @@
-import { memo, useContext, useEffect, useState, VFC } from "react";
+import { memo, useContext, useState, VFC } from "react";
 import styles from "./LearningRecordModal.module.css";
 import { Icon, Modal, ModalHeader } from "semantic-ui-react";
 import { CotentsTotalTime } from "../../atoms/LearningRecordModal/ContentsTotalTime/ContentsTotalTime";
@@ -8,6 +8,7 @@ import { UserContext } from "../../../providers/UserProvider";
 import {
   getAllTatalTime,
   getItemsTatalTime,
+  getMonthlyTotalTime,
 } from "../../../api/learningTimeRequest";
 import { TotalTimeType } from "../../../types/Time";
 
@@ -15,6 +16,7 @@ export const LearningRecordModal: VFC = memo(() => {
   const [open, setOpen] = useState(false);
   const [allTime, setAllTime] = useState(0);
   const [itemsTime, setItemsTime] = useState<TotalTimeType[]>();
+  const [monthlyTime, setMonthlyTime] = useState(0);
   const { userData } = useContext(UserContext);
 
   const fetchTotalTime = async () => {
@@ -22,17 +24,20 @@ export const LearningRecordModal: VFC = memo(() => {
     try {
       const resultAllTime = await getAllTatalTime(userData.user_id);
       const resultItemsTime = await getItemsTatalTime(userData.user_id);
+      const resultMonthlyTime = await getMonthlyTotalTime(userData.user_id);
       // 3600秒（1時間）で割る、その他切り捨て
       setAllTime(Math.floor(resultAllTime.total_sec / 3600));
+      setMonthlyTime(Math.floor(resultMonthlyTime.total_sec / 3600));
       setItemsTime(resultItemsTime);
     } catch (err: any) {
       console.log(err);
     }
   };
 
-  useEffect(() => {
+  const onClickLearningRecord = () => {
+    setOpen(true);
     fetchTotalTime();
-  });
+  };
 
   return (
     <Modal
@@ -41,7 +46,7 @@ export const LearningRecordModal: VFC = memo(() => {
       open={open}
       dimmer="inverted"
       trigger={
-        <PrimaryBotton onClick={() => setOpen(true)}>
+        <PrimaryBotton onClick={onClickLearningRecord}>
           学習記録を見る
         </PrimaryBotton>
       }
@@ -62,7 +67,7 @@ export const LearningRecordModal: VFC = memo(() => {
         <Modal.Description>
           <div className={styles.modalContainer}>
             <div className={styles.totalTimeContainer}>
-              {/* <TotalTime children={"この月"} totalTime={111} /> */}
+              <TotalTime children={"今月"} totalTime={monthlyTime} />
               <TotalTime children={"トータル"} totalTime={allTime} />
             </div>
             <p className={styles.learningContentTitle}>

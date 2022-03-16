@@ -61,3 +61,11 @@ export const getUserTodoList = async (userID: number) => {
     throw new Error(err);
   }
 };
+
+export const deleteTodo = async (todoId: number) => {
+  try {
+    axios.delete(`${URL}/todos/?todo_id=${todoId}`);
+  } catch (err: any) {
+    console.log(err);
+  }
+};
