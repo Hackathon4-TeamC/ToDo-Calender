@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
+from typing import List
 
 
 from sql_app.database import get_db
@@ -13,3 +14,11 @@ router = APIRouter()
 @router.get("/total/all/{user_id}", response_model=learning_total_schema.TotalSec)
 async def total_time(user_id: int, db: Session = Depends(get_db)):
     return learning_total_crud.total_time(user_id, db)
+
+
+@router.get(
+    "/total/items/{user_id}", response_model=List[learning_total_schema.TotalSec]
+)
+async def items_time(user_id: int, db: Session = Depends(get_db)):
+    return learning_total_crud.items_time(user_id, db)
+
