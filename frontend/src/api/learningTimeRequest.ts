@@ -1,14 +1,23 @@
 import axios from "axios";
-import { TotalTime } from "../types/Time";
+import { TotalTimeType } from "../types/Time";
 
 const URL = "http://localhost:8000";
 export const getAllTatalTime = async (userID: number) => {
   try {
-    const result = await axios.get<TotalTime>(`${URL}/total/all/${userID}`);
+    const result = await axios.get<TotalTimeType>(`${URL}/total/all/${userID}`);
     return result.data;
   } catch (err: any) {
     throw new Error(err);
   }
 };
 
-// export const getIme
+export const getItemsTatalTime = async (userID: number) => {
+  try {
+    const result = await axios.get<TotalTimeType[]>(
+      `${URL}/total/items/${userID}`
+    );
+    return result.data;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
