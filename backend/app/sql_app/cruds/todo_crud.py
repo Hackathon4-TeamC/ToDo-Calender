@@ -24,7 +24,6 @@ def create_todo(db: Session, todo: todo_schema.TodoCreate):
 
     for length in range(repeat_times):
         excution_date = todo.start_date + datetime.timedelta(days=length)
-        print(type(excution_date))
         if excution_date.strftime("%a") in todo.learning_weekday:
             input_db = models.Todo(
                 user_id=todo.user_id,
@@ -90,7 +89,14 @@ def todo_update_db(req_todo: todo_schema.PutTodo, db: Session):
 def get_user_isdone_todolist(user_id: int, db: Session):
     response_data = (
         db.query(models.Todo)
-        .filter(and_(models.Todo.user_id == user_id, models.Todo.is_done == True))
+        .filter(and_(models.Todo.user_id == user_id, models.Todo.is_done == 1))
         .all()
     )
     return response_data
+
+
+def delete_todo(todo_id: int, db: Session):
+    db.query(models.Todo).filter(models.Todo.todo_id == todo_id).delete()
+    db.commit()
+    db.close
+    return "ok! delete todo data"

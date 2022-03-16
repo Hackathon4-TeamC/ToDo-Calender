@@ -1,3 +1,4 @@
-export interface TotalTime {
+export interface TotalTimeType {
+  todo_task: string;
   total_sec: number;
 }

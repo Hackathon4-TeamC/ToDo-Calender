@@ -1,6 +1,6 @@
 import { ChangeEvent, memo, useEffect, useState, VFC } from "react";
 import { Checkbox, Icon } from "semantic-ui-react";
-import { putLearningPlan } from "../../../../api/todoRequest";
+import { deleteTodo, putLearningPlan } from "../../../../api/todoRequest";
 import { Todo } from "../../../../types/Todo";
 import { CalendarDrawing } from "../../../organisms/Calendar/Calendar";
 import styles from "./index.module.css";
@@ -10,11 +10,19 @@ interface Props {
   setCalendarDrawing: React.Dispatch<
     React.SetStateAction<CalendarDrawing[] | undefined>
   >;
+  setDailyTodos: React.Dispatch<React.SetStateAction<Todo[] | undefined>>;
   calendarDrawing: CalendarDrawing[] | undefined;
+  dailyTodos: Todo[] | undefined;
 }
 
 export const LearningRocord: VFC<Props> = memo((props) => {
-  const { todoData, setCalendarDrawing, calendarDrawing } = props;
+  const {
+    todoData,
+    setCalendarDrawing,
+    calendarDrawing,
+    dailyTodos,
+    setDailyTodos,
+  } = props;
   const [todo, setTodo] = useState<Todo>(todoData);
 
   useEffect(() => {
@@ -56,12 +64,32 @@ export const LearningRocord: VFC<Props> = memo((props) => {
         setCalendarDrawing([saveData]);
       }
     } else {
-      const saveData = calendarDrawing?.filter(
-        (data) => data.todoId !== todo.todo_id
-      );
-      setTodo((state) => ({ ...state, is_done: todo.is_done }));
-      setCalendarDrawing(saveData);
+      removeFromCalendar(todo.is_done);
     }
+  };
+
+  // カレンダーからの表示を削除
+  const removeFromCalendar = (isDone: boolean) => {
+    const saveData = calendarDrawing?.filter(
+      (data) => data.todoId !== todo.todo_id
+    );
+    setTodo((state) => ({ ...state, is_done: isDone }));
+    setCalendarDrawing(saveData);
+    const removeSlideBar = dailyTodos?.filter(
+      (data) => data.todo_id !== todo.todo_id
+    );
+    setDailyTodos(removeSlideBar);
+  };
+
+  const onClickDeleteIcon = () => {
+    if (!window.confirm("タスクを削除してもよろしいですか？")) return;
+    deleteTodo(todo.todo_id)
+      .then(() => {
+        removeFromCalendar(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -84,7 +112,7 @@ export const LearningRocord: VFC<Props> = memo((props) => {
               onClick={onClickCheckBox}
             />
           </div>
-          <div>
+          <div className={styles.icon} onClick={onClickDeleteIcon}>
             <Icon name="trash" size="large" />
           </div>
         </div>

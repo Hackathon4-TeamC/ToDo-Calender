@@ -20,7 +20,7 @@ export const Calendar: VFC = () => {
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [date, setDate] = useState<Date>();
-  const [dailyTodo, setDailyTodo] = useState<Todo[]>();
+  const [dailyTodos, setDailyTodos] = useState<Todo[]>();
   const [calendarDrawing, setCalendarDrawing] = useState<CalendarDrawing[]>();
   const [isLoading, setIsLoading] = useState(false);
   const { userData } = useContext(UserContext);
@@ -69,7 +69,7 @@ export const Calendar: VFC = () => {
       .then((result) => {
         if (result) {
           setVisible(true);
-          setDailyTodo(result);
+          setDailyTodos(result);
         }
       })
       .catch((err) => {
@@ -103,7 +103,8 @@ export const Calendar: VFC = () => {
         visible={visible}
         setVisible={setVisible}
         date={date}
-        todos={dailyTodo}
+        dailyTodos={dailyTodos}
+        setDailyTodos={setDailyTodos}
         setCalendarDrawing={setCalendarDrawing}
         calendarDrawing={calendarDrawing}
       />

@@ -1,29 +1,43 @@
-import { memo, useContext, useEffect, useState, VFC } from "react";
+import { memo, useContext, useState, VFC } from "react";
 import styles from "./LearningRecordModal.module.css";
 import { Icon, Modal, ModalHeader } from "semantic-ui-react";
 import { CotentsTotalTime } from "../../atoms/LearningRecordModal/ContentsTotalTime/ContentsTotalTime";
 import { TotalTime } from "../../atoms/LearningRecordModal/TotalTime/TotalTime";
 import { PrimaryBotton } from "../../atoms/CalenderSidebar/PrimaryBotton/PrimaryBtton";
 import { UserContext } from "../../../providers/UserProvider";
-import { getAllTatalTime } from "../../../api/learningTimeRequest";
+import {
+  getAllTatalTime,
+  getItemsTatalTime,
+  getMonthlyTotalTime,
+} from "../../../api/learningTimeRequest";
+import { TotalTimeType } from "../../../types/Time";
 
 export const LearningRecordModal: VFC = memo(() => {
   const [open, setOpen] = useState(false);
   const [allTime, setAllTime] = useState(0);
+  const [itemsTime, setItemsTime] = useState<TotalTimeType[]>();
+  const [monthlyTime, setMonthlyTime] = useState(0);
   const { userData } = useContext(UserContext);
 
-  useEffect(() => {
+  const fetchTotalTime = async () => {
     if (!userData) return;
-    getAllTatalTime(userData.user_id)
-      .then((result) => {
-        const totalSec = result.total_sec;
-        // 3600秒（1時間）で割る、その他切り捨て
-        setAllTime(Math.floor(totalSec / 3600));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+    try {
+      const resultAllTime = await getAllTatalTime(userData.user_id);
+      const resultItemsTime = await getItemsTatalTime(userData.user_id);
+      const resultMonthlyTime = await getMonthlyTotalTime(userData.user_id);
+      // 3600秒（1時間）で割る、その他切り捨て
+      setAllTime(Math.floor(resultAllTime.total_sec / 3600));
+      setMonthlyTime(Math.floor(resultMonthlyTime.total_sec / 3600));
+      setItemsTime(resultItemsTime);
+    } catch (err: any) {
+      console.log(err);
+    }
+  };
+
+  const onClickLearningRecord = () => {
+    setOpen(true);
+    fetchTotalTime();
+  };
 
   return (
     <Modal
@@ -32,7 +46,7 @@ export const LearningRecordModal: VFC = memo(() => {
       open={open}
       dimmer="inverted"
       trigger={
-        <PrimaryBotton onClick={() => setOpen(true)}>
+        <PrimaryBotton onClick={onClickLearningRecord}>
           学習記録を見る
         </PrimaryBotton>
       }
@@ -53,19 +67,19 @@ export const LearningRecordModal: VFC = memo(() => {
         <Modal.Description>
           <div className={styles.modalContainer}>
             <div className={styles.totalTimeContainer}>
-              {/* <TotalTime children={"この月"} totalTime={111} /> */}
+              <TotalTime children={"今月"} totalTime={monthlyTime} />
               <TotalTime children={"トータル"} totalTime={allTime} />
             </div>
             <p className={styles.learningContentTitle}>
               学習項目ごとの総合学習時間
             </p>
             <div className={styles.learningContentsContainer}>
-              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
-              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
-              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
-              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
-              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
-              <CotentsTotalTime children={"寿司打"} totalTime={0.5} />
+              {itemsTime?.map((item) => (
+                <CotentsTotalTime
+                  children={item.todo_task}
+                  totalTime={Math.floor(item.total_sec / 3600)}
+                />
+              ))}
             </div>
           </div>
         </Modal.Description>

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DATETIME, Boolean, Time
+from sqlalchemy import Column, Integer, String, DATETIME, Boolean, Time, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 
 # modelで使用する
@@ -19,7 +19,7 @@ class User(Base):
 class Todo(Base):
     __tablename__ = "todos"
     todo_id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(Integer, nullable=False)
+    user_id = Column(Integer, ForeignKey(User.user_id))
     todo_task = Column(String(30))
     execution_date = Column(DATETIME)
     is_done = Column(Boolean)
