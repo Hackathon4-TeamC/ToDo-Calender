@@ -1,15 +1,15 @@
 from typing import Optional
 from fastapi import APIRouter
 
-import sql_app.schemas.memo as memo_schema
+import sql_app.schemas.memo_schema as memo_schema
 
 router = APIRouter()
 
 @router.get("/memo")
-async def memo(memo_id: memo_schema.memo, memo: memo_schema.memo):
+async def memo(memo_id, memo_text: memo_schema.memo):
     return {
         "memo_id": memo_id,
-        "memo": memo
+        "memo": memo_text
     }
 
 @router.post("/memo")
