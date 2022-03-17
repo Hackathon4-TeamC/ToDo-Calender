@@ -1,22 +1,35 @@
-from typing import List
-from fastapi import APIRouter
+import datetime
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
-import sql_app.schemas.memo as memo_schema
+
+from sql_app.schemas import memo_schema
+from sql_app.cruds import memo_crud
+from sql_app.database import get_db
+
 
 router = APIRouter()
 
-@router.get("/memo")
-async def memo(memo: memo_schema.Create_memo):
-    return [memo_schema.Memo(id=1, title="1つ目のメモ")]
+
+@router.get("/memo/", response_model=memo_schema.ResponseMemo)
+async def memo(
+    year: int, month: int, date: int, user_id: int, db: Session = Depends(get_db)
+):
+    request_date = datetime.date(year, month, date)
+    return memo_crud.get_user_memo(request_date, user_id, db)
+
 
 @router.post("/memo")
-async def create_memo():
-    pass
+async def create_memo(memo: memo_schema.CreateMemo, db: Session = Depends(get_db)):
+    return memo_crud.create_memo(memo, db)
 
-@router.put("/memo/{memo_id}")
-async def update_memo():
-    pass
+
+@router.put("/memo", response_model=memo_schema.ResponseMemo)
+async def update_memo(memo: memo_schema.PutMemo, db: Session = Depends(get_db)):
+    return memo_crud.put_memo(memo, db)
+
 
 @router.delete("/memo/{memo_id}")
-async def delete_memo():
-    pass
+async def delete_memo(memo_id: int, db: Session = Depends(get_db)):
+    return memo_crud.delete_memo(memo_id, db)
+

@@ -30,7 +30,7 @@ export const LearningRecordModal: VFC = memo(() => {
       setMonthlyTime(Math.floor(resultMonthlyTime.total_sec / 3600));
       setItemsTime(resultItemsTime);
     } catch (err: any) {
-      console.log(err);
+      console.error(err);
     }
   };
 
