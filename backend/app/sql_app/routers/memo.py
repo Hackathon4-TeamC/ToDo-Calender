@@ -32,3 +32,4 @@ async def update_memo(memo: memo_schema.PutMemo, db: Session = Depends(get_db)):
 @router.delete("/memo/{memo_id}")
 async def delete_memo(memo_id: int, db: Session = Depends(get_db)):
     return memo_crud.delete_memo(memo_id, db)
+

@@ -7,6 +7,7 @@ from sql_app.routers import learning_total
 from sql_app.routers import memo
 
 
+
 app = FastAPI()
 
 # ルーターの設定
