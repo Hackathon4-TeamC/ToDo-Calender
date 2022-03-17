@@ -61,7 +61,7 @@ export const useNewPlan = () => {
         allStatesClear();
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 

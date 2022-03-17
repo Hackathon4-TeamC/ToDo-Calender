@@ -8,6 +8,8 @@ import { getIsDoneDailyTodos, getUserTodoList } from "../../../api/todoRequest";
 import { UserContext } from "../../../providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "semantic-ui-react";
+import { getDailyMemo } from "../../../api/memoRequests";
+import { Memo } from "../../../types/Memo";
 
 export interface CalendarDrawing {
   title: string;
@@ -22,7 +24,10 @@ export const Calendar: VFC = () => {
   const [date, setDate] = useState<Date>();
   const [dailyTodos, setDailyTodos] = useState<Todo[]>();
   const [calendarDrawing, setCalendarDrawing] = useState<CalendarDrawing[]>();
+  const [memoData, setMemoData] = useState<Memo>();
+  const [memoDataConfirm, setMemoDataConfirm] = useState<Memo>();
   const [isLoading, setIsLoading] = useState(false);
+  const [dateStr, serDateStr] = useState("");
   const { userData } = useContext(UserContext);
 
   useEffect(() => {
@@ -38,7 +43,7 @@ export const Calendar: VFC = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       })
       .finally(() => {
         setIsLoading(false);
@@ -61,20 +66,26 @@ export const Calendar: VFC = () => {
   /**
    * 指定した日付の時間を取得
    * 日付を引数にしてバックエンドから学習記録を取得
-
    */
-  const dateClick = (info: DateClickArg) => {
+  const dateClick = async (info: DateClickArg) => {
+    serDateStr(info.dateStr);
     setDate(info.date);
-    getIsDoneDailyTodos(info.date, userData?.user_id as number)
-      .then((result) => {
-        if (result) {
-          setVisible(true);
-          setDailyTodos(result);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      const getIsDoneTodo = await getIsDoneDailyTodos(
+        info.date,
+        userData?.user_id as number
+      );
+      const getMemo = await getDailyMemo(
+        info.date,
+        userData?.user_id as number
+      );
+      setDailyTodos(getIsDoneTodo);
+      setMemoData(getMemo);
+      setMemoDataConfirm(getMemo);
+      setVisible(true);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const loadingStyle = {
@@ -107,6 +118,11 @@ export const Calendar: VFC = () => {
         setDailyTodos={setDailyTodos}
         setCalendarDrawing={setCalendarDrawing}
         calendarDrawing={calendarDrawing}
+        memoData={memoData}
+        memoDataConfirm={memoDataConfirm}
+        setMemoData={setMemoData as React.Dispatch<React.SetStateAction<Memo>>}
+        userData={userData}
+        dateStr={dateStr}
       />
     </div>
   );

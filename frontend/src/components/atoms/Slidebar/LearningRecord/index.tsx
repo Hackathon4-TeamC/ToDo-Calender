@@ -43,7 +43,7 @@ export const LearningRocord: VFC<Props> = memo((props) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -88,7 +88,7 @@ export const LearningRocord: VFC<Props> = memo((props) => {
         removeFromCalendar(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 

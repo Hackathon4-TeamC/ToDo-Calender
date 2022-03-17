@@ -24,3 +24,13 @@ class Todo(Base):
     execution_date = Column(DATETIME)
     is_done = Column(Boolean)
     learning_time = Column(Time)
+
+
+# Create_memo
+class Memo(Base):
+    __tablename__ = "memos"
+    user_id = Column(Integer, ForeignKey(User.user_id))
+    memo_id = Column(Integer, primary_key=True, autoincrement=True)
+    memo_txt = Column(String(2000))
+    written_date = Column(DATETIME)
+    is_deleted = Column(Boolean)

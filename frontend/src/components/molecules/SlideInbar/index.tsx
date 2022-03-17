@@ -1,6 +1,9 @@
 import { memo, VFC } from "react";
 import { Sidebar } from "semantic-ui-react";
+import { deleteMemo, postMemo, putMemo } from "../../../api/memoRequests";
+import { Memo } from "../../../types/Memo";
 import { Todo } from "../../../types/Todo";
+import { User } from "../../../types/User";
 import { MarkdownEditor } from "../../atoms/MarkdownEditor";
 import { LearningRocord } from "../../atoms/Slidebar/LearningRecord";
 import { CalendarDrawing } from "../../organisms/Calendar/Calendar";
@@ -16,6 +19,11 @@ interface Props {
     React.SetStateAction<CalendarDrawing[] | undefined>
   >;
   calendarDrawing: CalendarDrawing[] | undefined;
+  memoData: Memo | undefined;
+  setMemoData: React.Dispatch<React.SetStateAction<Memo>>;
+  userData: User | undefined;
+  dateStr: string;
+  memoDataConfirm: Memo | undefined;
 }
 
 export const SlideinBar: VFC<Props> = memo((props) => {
@@ -27,7 +35,26 @@ export const SlideinBar: VFC<Props> = memo((props) => {
     setCalendarDrawing,
     calendarDrawing,
     setDailyTodos,
+    memoData,
+    setMemoData,
+    userData,
+    dateStr,
+    memoDataConfirm,
   } = props;
+
+  const onHideSlidebar = () => {
+    setVisible(false);
+    if (!userData || !memoData || !dateStr) return;
+    if (!memoDataConfirm) {
+      postMemo(userData.user_id, memoData.memo_txt, dateStr).catch((err) =>
+        console.error(err)
+      );
+    } else if (memoDataConfirm && memoData.memo_txt === "") {
+      deleteMemo(memoDataConfirm.memo_id).catch((err) => console.error(err));
+    } else if (memoData.memo_txt !== memoDataConfirm.memo_txt) {
+      putMemo(userData.user_id, memoData).catch((err) => console.error(err));
+    }
+  };
 
   return (
     <>
@@ -35,7 +62,7 @@ export const SlideinBar: VFC<Props> = memo((props) => {
         animation="overlay"
         direction="bottom"
         icon="labeled"
-        onHide={() => setVisible(false)}
+        onHide={() => onHideSlidebar()}
         vertical={true}
         visible={visible}
       >
@@ -65,7 +92,7 @@ export const SlideinBar: VFC<Props> = memo((props) => {
           <div className={styles.SlideInRight}>
             <div className={styles.SlideInRecord}>今日の記録</div>
             <div className={styles.markDownEditor}>
-              <MarkdownEditor />
+              <MarkdownEditor memoData={memoData} setMemoData={setMemoData} />
             </div>
           </div>
         </div>

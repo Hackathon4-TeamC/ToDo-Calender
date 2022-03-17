@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import SimpleMde from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
+import { Memo } from "../../../types/Memo";
 
-export const MarkdownEditor = () => {
-  const [markdownValue, setMarkdownValue] = useState("");
+interface Props {
+  memoData: Memo | undefined;
+  setMemoData: React.Dispatch<React.SetStateAction<Memo>>;
+}
+
+export const MarkdownEditor = (props: Props) => {
+  const { memoData, setMemoData } = props;
 
   const onChange = (value: any) => {
-    setMarkdownValue(value);
+    setMemoData((state) => ({ ...state, memo_txt: value }));
   };
 
-  return <SimpleMde value={markdownValue} onChange={onChange} />;
+  return <SimpleMde value={memoData?.memo_txt} onChange={onChange} />;
 };
