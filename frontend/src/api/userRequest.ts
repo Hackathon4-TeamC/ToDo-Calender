@@ -5,7 +5,7 @@
 import axios from "axios";
 import { User } from "../types/User";
 
-const URL = "http://localhost:8000";
+const URL = "study-calendar-alb-886063940.ap-northeast-1.elb.amazonaws.com:8000";
 
 // ログインのリクエスト
 export const postLoginUser = async (
