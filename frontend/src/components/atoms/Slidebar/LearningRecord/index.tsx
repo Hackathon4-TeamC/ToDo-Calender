@@ -64,7 +64,11 @@ export const LearningRocord: VFC<Props> = memo((props) => {
         setCalendarDrawing([saveData]);
       }
     } else {
-      removeFromCalendar(todo.is_done);
+      const saveData = calendarDrawing?.filter(
+        (data) => data.todoId !== todo.todo_id
+      );
+      setTodo((state) => ({ ...state, is_done: todo.is_done }));
+      setCalendarDrawing(saveData);
     }
   };
 
