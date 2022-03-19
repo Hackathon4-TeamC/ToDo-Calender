@@ -18,7 +18,7 @@ app.include_router(memo.router)
 
 # corsの設定
 origins = [
-    "https://study-calendar.net",
+    "http://localhost:3000",
 ]
 app.add_middleware(
     CORSMiddleware,

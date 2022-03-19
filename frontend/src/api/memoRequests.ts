@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Memo } from "../types/Memo";
 
-const URL = "study-calendar-alb-886063940.ap-northeast-1.elb.amazonaws.com:8000";
+const URL = "http://localhost:8000";
 export const getDailyMemo = async (date: Date, user_id: number) => {
   try {
     const year = date.getFullYear();

@@ -1,0 +1,82 @@
+version: "3.8"
+
+services:
+  api:
+    # image: "fastapi_starter:1.0.0"
+    container_name: "fastapi"
+    depends_on:
+      - db
+    build: ./backend/docker/api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/app:/usr/src/app/app:cached
+      - ./backend/db:/usr/src/app/db:cached
+      - ./backend/scripts:/usr/src/app/scripts:cached
+    working_dir: /usr/src/app/scripts
+    command: bash -c "./run.sh"
+    networks:
+      - fastapi_network
+    environment:
+      APP_ENV: "development"
+      TZ: "Asia/Tokyo"
+    env_file:
+      - ./backend/.env.dev
+      
+  db:
+    # image: "fastapi_starter_db:1.0.0"
+    container_name: "mysql_db"
+    build: ./backend/docker/db
+    restart: always
+    tty: true
+    expose:
+      - "3306"
+    volumes:
+      - ./backend/docker/db/conf.d:/etc/mysql/conf.d:cached
+      - ./backend/docker/db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+      - ./backend/log/db:/var/log/mysql:cached
+    networks:
+      - fastapi_network
+    environment:
+      APP_ENV: "development"
+      TZ: "Asia/Tokyo"
+    env_file:
+      - ./backend/.env.dev
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    env_file:
+      - ./backend/.env.dev
+    links:
+      - db
+    ports:
+      - "4000:80"
+    volumes:
+      - ./backend/phpmyadmin/sessions:/sessions
+    networks:
+      - fastapi_network
+
+  front:
+    build: ./frontend
+    container_name: node
+    volumes:
+      - ./frontend:/frontend
+    working_dir: /frontend
+    ports:
+      - 80:3000
+      - 443:3000
+    tty: true
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - fastapi_network
+
+networks:
+  # default:
+  #   external:
+  #     name: bridge
+  fastapi_network:
+    name: fastapi_network
+    driver: bridge
+    # external: true
