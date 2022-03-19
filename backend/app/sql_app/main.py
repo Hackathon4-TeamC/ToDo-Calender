@@ -17,9 +17,7 @@ app.include_router(learning_total.router)
 app.include_router(memo.router)
 
 # corsの設定
-origins = [
-    "http://localhost:3000",
-]
+origins = [ * ]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

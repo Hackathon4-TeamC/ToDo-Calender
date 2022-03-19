@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Todo } from "../types/Todo";
 
-const URL = "http://localhost:8000";
+const URL = "http://study-calendar-alb-886063940.ap-northeast-1.elb.amazonaws.com:8000";
 export const getIsDoneDailyTodos = async (selectDate: Date, userID: number) => {
   try {
     const year = selectDate.getFullYear();
