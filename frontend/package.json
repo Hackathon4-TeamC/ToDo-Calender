@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "@semantic-ui-react/css-patch": "^1.0.0",
-    "axios-mock-server": "^0.19.1"
+    "axios-mock-server": "^0.19.1",
+    "babel-cli": "^6.26.0"
   }
 }
