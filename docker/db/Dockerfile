@@ -3,8 +3,8 @@ FROM mysql:8.0.28
 # RUN touch /var/log/mysql/mysqld.log
 
 # Set Japanese
-RUN apt-get update && apt-get install -y locales\
- && apt-get clean\
+RUN apt update && apt install -y locales\
+ && apt clean\
  && rm -rf /var/lib/apt/lists/*
 RUN sed -i -E 's/# (ja_JP.UTF-8)/\1/' /etc/locale.gen\
  && locale-gen

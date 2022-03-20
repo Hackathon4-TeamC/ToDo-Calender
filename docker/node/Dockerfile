@@ -5,4 +5,4 @@ WORKDIR /frontend
 COPY . /frontend
 EXPOSE 3000
 ENV CI=true
-CMD npm start
+CMD ["/bin/bash","./frontend/start.sh"]

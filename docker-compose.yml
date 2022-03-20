@@ -6,7 +6,9 @@ services:
     container_name: "fastapi"
     depends_on:
       - db
-    build: ./backend/docker/api
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
     ports:
       - "8000:8000"
     volumes:
@@ -26,7 +28,9 @@ services:
   db:
     # image: "fastapi_starter_db:1.0.0"
     container_name: "mysql_db"
-    build: ./backend/docker/db
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
     restart: always
     tty: true
     expose:
@@ -57,14 +61,15 @@ services:
       - fastapi_network
 
   front:
-    build: ./frontend
     container_name: node
+    build:
+      context: .
+      dockerfile: ./docker/node/Dockerfile
     volumes:
       - ./frontend:/frontend
     working_dir: /frontend
     ports:
-      - 80:3000
-      - 443:3000
+      - 3000:3000
     tty: true
     stdin_open: true
     environment:

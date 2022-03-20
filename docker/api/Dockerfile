@@ -6,6 +6,6 @@ RUN apt update \
     && apt clean
 
 WORKDIR /usr/src/app
-ADD requirements.txt .
+ADD ./docker/api/requirements.txt .
 RUN pip install -U pip \
     && pip install --trusted-host pypi.python.org -r requirements.txt
