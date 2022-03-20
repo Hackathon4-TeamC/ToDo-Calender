@@ -8,14 +8,14 @@ services:
       - db
     build:
       context: .
-      dockerfile: ./docker/api/Dockerfile
+      dockerfile: ./backend/docker/api/Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ./backend/app:/usr/src/app/app:cached
-      - ./backend/db:/usr/src/app/db:cached
-      - ./backend/scripts:/usr/src/app:cached
-    # working_dir: /usr/src/app/scripts
+      - ./backend/app/sql_app:/usr/src/app/sql_app:cached
+      - ./backend/app/db:/usr/src/app/db:cached
+      - ./backend/app/scripts:/usr/src/app/scripts:cached
+    working_dir: /usr/src/app/scripts
     command: bash -c "run.sh"
     networks:
       - frontend_network
@@ -31,7 +31,7 @@ services:
     container_name: MySQL
     build:
       context: .
-      dockerfile: ./docker/db/Dockerfile
+      dockerfile: ./backend/docker/db/Dockerfile
     restart: always
     tty: true
     expose:
@@ -65,7 +65,7 @@ services:
     container_name: Node
     build:
       context: .
-      dockerfile: ./docker/node/Dockerfile
+      dockerfile: ./node/Dockerfile
     volumes:
       - ./frontend:/frontend
     working_dir: /frontend

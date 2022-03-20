@@ -6,11 +6,12 @@ RUN apt update \
     && apt clean
 
 WORKDIR /usr/src/app
-COPY ./docker/api/requirements.txt .
+COPY ./backend/docker/api/requirements.txt .
 RUN pip install -U pip \
     && pip install --trusted-host pypi.python.org -r requirements.txt
 
-COPY ./backend/app /usr/src/app/app
-COPY ./backend/db /usr/src/app/db
-COPY ./backend/scripts /usr/src/app
+COPY ./backend/app/sql_app /usr/src/app/app
+COPY ./backend/app/db /usr/src/app/db
+COPY ./backend/app/scripts /usr/src/app/scripts
 
+# CMD [ "/bin/sh",  "-c", "./run.sh" ]
