@@ -3,7 +3,7 @@ version: "3.8"
 services:
   api:
     # image: "fastapi_starter:1.0.0"
-    container_name: "fastapi"
+    container_name: FatAPI
     depends_on:
       - db
     build:
@@ -14,11 +14,12 @@ services:
     volumes:
       - ./backend/app:/usr/src/app/app:cached
       - ./backend/db:/usr/src/app/db:cached
-      - ./backend/scripts:/usr/src/app/scripts:cached
-    working_dir: /usr/src/app/scripts
-    command: bash -c "./run.sh"
+      - ./backend/scripts:/usr/src/app:cached
+    # working_dir: /usr/src/app/scripts
+    command: bash -c "run.sh"
     networks:
-      - fastapi_network
+      - frontend_network
+      - backend_network
     environment:
       APP_ENV: "development"
       TZ: "Asia/Tokyo"
@@ -27,7 +28,7 @@ services:
       
   db:
     # image: "fastapi_starter_db:1.0.0"
-    container_name: "mysql_db"
+    container_name: MySQL
     build:
       context: .
       dockerfile: ./docker/db/Dockerfile
@@ -40,7 +41,7 @@ services:
       - ./backend/docker/db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
       - ./backend/log/db:/var/log/mysql:cached
     networks:
-      - fastapi_network
+      - backend_network
     environment:
       APP_ENV: "development"
       TZ: "Asia/Tokyo"
@@ -58,10 +59,10 @@ services:
     volumes:
       - ./backend/phpmyadmin/sessions:/sessions
     networks:
-      - fastapi_network
+      - backend_network
 
   front:
-    container_name: node
+    container_name: Node
     build:
       context: .
       dockerfile: ./docker/node/Dockerfile
@@ -75,13 +76,17 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     networks:
-      - fastapi_network
+      - frontend_network
 
 networks:
   # default:
   #   external:
   #     name: bridge
-  fastapi_network:
-    name: fastapi_network
+  frontend_network:
+    name: frontend_network
+    driver: bridge
+    # external: true
+  backend_network:
+    name: backend_network
     driver: bridge
     # external: true
