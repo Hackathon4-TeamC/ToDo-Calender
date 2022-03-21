@@ -3,7 +3,7 @@ version: "3.8"
 services:
   api:
     # image: "fastapi_starter:1.0.0"
-    container_name: "fastapi"
+    container_name: fastapi
     depends_on:
       - db
     build: ./docker/api
@@ -25,7 +25,7 @@ services:
       
   db:
     # image: "fastapi_starter_db:1.0.0"
-    container_name: "mysql_db"
+    container_name: mysql_db
     build: ./docker/db
     restart: always
     tty: true
@@ -57,10 +57,10 @@ services:
       - fastapi_network
 
 networks:
-  # default:
-  #   external:
-  #     name: bridge
+  default:
+    external:
+      name: bridge
   fastapi_network:
     name: fastapi_network
     driver: bridge
-    # external: true
+    external: true
